@@ -1,35 +1,29 @@
 import { ArchiveItem } from '../../../types';
 import { Button } from '../button';
-import {
-  Trash2,
-  Edit,
-  User as UserIcon,
-  CopyPlus,
-  FileText,
-  Users,
-  Table as TableIcon,
-} from 'lucide-react';
+import { Download, Edit, FileText, Table as TableIcon, Trash2, Users, User as UserIcon, CopyPlus } from 'lucide-react';
 
 interface GeneratorGridProps {
   generators: ArchiveItem[];
-  previewItem: ArchiveItem | null;
   currentUser: any;
+  previewItem: ArchiveItem | null;
   activeVariants: Record<string, string[]>;
+  handlePreview: (item: ArchiveItem) => void;
+  handleClone: (item: ArchiveItem) => void;
+  handleExport: (item: ArchiveItem) => void;
   onEdit: (item: ArchiveItem) => void;
   onDelete: (id: string) => void;
-  handleClone: (item: ArchiveItem) => void;
-  handlePreview: (item: ArchiveItem) => void;
 }
 
 export function GeneratorGrid({
   generators,
-  previewItem,
   currentUser,
+  previewItem,
   activeVariants,
+  handlePreview,
+  handleClone,
+  handleExport,
   onEdit,
   onDelete,
-  handleClone,
-  handlePreview,
 }: GeneratorGridProps) {
   return (
     <div className="xl:col-span-1">
@@ -50,6 +44,19 @@ export function GeneratorGrid({
               <div className="absolute top-1 right-1 flex gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity z-20">
                 {canEdit && (
                   <>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleExport(item);
+                      }}
+                      className="h-6 w-6 bg-background/90 border border-primary/20 text-primary/60 hover:text-primary hover:bg-primary/10 shadow-sm"
+                      title="Eksportuj do JSON"
+                    >
+                      <Download className="w-3 h-3" />
+                    </Button>
+
                     <Button
                       variant="ghost"
                       size="icon"

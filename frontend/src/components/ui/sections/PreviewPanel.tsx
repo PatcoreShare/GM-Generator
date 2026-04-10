@@ -1,56 +1,63 @@
+import { ArchiveItem, CharacterArchive, NoteArchive, RandomTable } from '../../../types';
 import { Card, CardContent } from '../card';
 import { Button } from '../button';
 import {
-  Trash2,
-  Edit,
-  Copy,
   Check,
-  X,
-  Skull,
+  Copy,
   CopyPlus,
   Dice5,
+  Download,
+  Edit,
+  FileText,
+  Skull,
+  Table as TableIcon,
+  Trash2,
+  Users,
+  X,
 } from 'lucide-react';
-import { CharacterArchive, NoteArchive, RandomTable } from '../../../types';
 import { ResultHistory } from './ResultHistory';
+import { ResultRenderer } from './ResultRenderer';
 
 interface PreviewPanelProps {
-  previewItem: any;
   currentUser: any;
-  onEdit: (item: any) => void;
+  previewItem: ArchiveItem | null;
+  onEdit: (item: ArchiveItem) => void;
   onDelete: (id: string) => void;
-  handleClone: (item: any) => void;
-  results: any[];
-  setResults: (value: any) => void;
-  copied: boolean;
-  copyToClipboard: () => void;
+  handleClone: (item: ArchiveItem) => void;
+  handleExport: (item: ArchiveItem) => void;
+  handleRoll: (table: RandomTable) => void;
   rollCount: number;
   setRollCount: (value: number) => void;
   activeVariants: Record<string, string[]>;
   toggleVariant: (tableId: string, variantId: string) => void;
-  handleRoll: (table: RandomTable) => void;
+  results: any[];
+  setResults: (value: any[] | ((prev: any[]) => any[])) => void;
   lastRollCount: number;
   isHistoryExpanded: boolean;
   setIsHistoryExpanded: (value: boolean) => void;
+  copied: boolean;
+  copyToClipboard: () => void;
 }
 
 export function PreviewPanel({
-  previewItem,
   currentUser,
+  previewItem,
   onEdit,
   onDelete,
   handleClone,
-  results,
-  setResults,
-  copied,
-  copyToClipboard,
+  handleExport,
+  handleRoll,
   rollCount,
   setRollCount,
   activeVariants,
   toggleVariant,
-  handleRoll,
+  results,
+  setResults,
   lastRollCount,
   isHistoryExpanded,
   setIsHistoryExpanded,
+  copied,
+  copyToClipboard,
 }: PreviewPanelProps) {
   return (
     <div className="xl:col-span-3">
@@ -64,6 +71,16 @@ export function PreviewPanel({
 
               {previewItem && (
                 <div className="flex gap-1">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleExport(previewItem)}
+                    className="h-7 w-7 text-primary/40 hover:text-primary"
+                    title="Eksportuj do JSON"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                  </Button>
+
                   {(previewItem.ownerId === currentUser.id || currentUser.role === 'admin') && (
                     <>
                       <Button
@@ -106,17 +123,8 @@ export function PreviewPanel({
             <div className="flex gap-2">
               {results.length > 0 && (
                 <>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={copyToClipboard}
-                    className="text-primary/60 hover:text-primary"
-                  >
-                    {copied ? (
-                      <Check className="w-4 h-4 mr-2" />
-                    ) : (
-                      <Copy className="w-4 h-4 mr-2" />
-                    )}
+                  <Button variant="ghost" size="sm" onClick={copyToClipboard} className="text-primary/60 hover:text-primary">
+                    {copied ? <Check className="w-4 h-4 mr-2" /> : <Copy className="w-4 h-4 mr-2" />}
                     {copied ? 'Skopiowano' : 'Kopiuj Wszystko'}
                   </Button>
 
@@ -137,9 +145,7 @@ export function PreviewPanel({
           {!previewItem ? (
             <div className="flex flex-col items-center justify-center h-80 text-primary/30 italic text-center px-4">
               <Skull className="w-16 h-16 mb-6 opacity-10" />
-              <p className="text-sm">
-                Wybierz wpis z lewej, aby zobaczyć szczegóły lub wykonać rzut.
-              </p>
+              <p className="text-sm">Wybierz wpis z lewej, aby zobaczyć szczegóły lub wykonać rzut.</p>
             </div>
           ) : (
             <div className="flex-1 space-y-6">
@@ -147,9 +153,7 @@ export function PreviewPanel({
                 <div className="space-y-6">
                   <div className="flex flex-wrap items-end gap-4">
                     <div className="flex items-center gap-4 bg-background/50 p-3 rounded border border-primary/10 max-w-[150px]">
-                      <label className="text-[10px] font-black uppercase text-primary/40 whitespace-nowrap">
-                        Rzuty:
-                      </label>
+                      <label className="text-[10px] font-black uppercase text-primary/40 whitespace-nowrap">Rzuty:</label>
                       <input
                         type="number"
                         min="1"
@@ -201,10 +205,7 @@ export function PreviewPanel({
                             >
                               <input
                                 type="checkbox"
-                                checked={(
-                                  activeVariants[previewItem.id] ||
-                                  previewItem.fields?.map((field) => field.source)
-                                ).includes(f.source)}
+                                checked={(activeVariants[previewItem.id] || previewItem.fields?.map((field) => field.source)).includes(f.source)}
                                 onChange={() => toggleVariant(previewItem.id, f.source)}
                                 className="accent-primary w-3 h-3"
                               />
@@ -215,10 +216,7 @@ export function PreviewPanel({
                       </div>
                     )}
 
-                    <Button
-                      onClick={() => handleRoll(previewItem as RandomTable)}
-                      className="wfrp-button h-[46px] px-6"
-                    >
+                    <Button onClick={() => handleRoll(previewItem as RandomTable)} className="wfrp-button h-[46px] px-6">
                       <Dice5 className="w-4 h-4 mr-2" /> Losuj
                     </Button>
                   </div>
@@ -228,6 +226,7 @@ export function PreviewPanel({
                     lastRollCount={lastRollCount}
                     isHistoryExpanded={isHistoryExpanded}
                     setIsHistoryExpanded={setIsHistoryExpanded}
+                    ResultRenderer={ResultRenderer}
                   />
                 </div>
               )}
@@ -262,25 +261,19 @@ export function PreviewPanel({
                 <div className="space-y-8 animate-in fade-in duration-500">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-primary/5 p-6 rounded border border-primary/10">
                     <div>
-                      <span className="block text-[10px] font-black uppercase tracking-widest text-primary/40">
-                        Rasa
-                      </span>
+                      <span className="block text-[10px] font-black uppercase tracking-widest text-primary/40">Rasa</span>
                       <span className="text-lg font-bold text-primary">
                         {(previewItem as CharacterArchive).race}
                       </span>
                     </div>
                     <div>
-                      <span className="block text-[10px] font-black uppercase tracking-widest text-primary/40">
-                        Profesja
-                      </span>
+                      <span className="block text-[10px] font-black uppercase tracking-widest text-primary/40">Profesja</span>
                       <span className="text-lg font-bold text-primary">
                         {(previewItem as CharacterArchive).profession}
                       </span>
                     </div>
                     <div>
-                      <span className="block text-[10px] font-black uppercase tracking-widest text-primary/40">
-                        System
-                      </span>
+                      <span className="block text-[10px] font-black uppercase tracking-widest text-primary/40">System</span>
                       <span className="text-lg font-bold text-primary">
                         Warhammer {(previewItem as CharacterArchive).edition}
                       </span>
@@ -296,10 +289,7 @@ export function PreviewPanel({
                         <thead>
                           <tr className="bg-primary/10">
                             {Object.keys((previewItem as CharacterArchive).stats).map((s) => (
-                              <th
-                                key={s}
-                                className="border border-primary/20 p-2 text-[10px] font-black text-primary"
-                              >
+                              <th key={s} className="border border-primary/20 p-2 text-[10px] font-black text-primary">
                                 {s}
                               </th>
                             ))}
@@ -308,10 +298,7 @@ export function PreviewPanel({
                         <tbody>
                           <tr>
                             {Object.values((previewItem as CharacterArchive).stats).map((val, i) => (
-                              <td
-                                key={i}
-                                className="border border-primary/20 p-2 text-center font-bold text-primary"
-                              >
+                              <td key={i} className="border border-primary/20 p-2 text-center font-bold text-primary">
                                 {val}
                               </td>
                             ))}
@@ -330,10 +317,7 @@ export function PreviewPanel({
                             <thead>
                               <tr className="bg-primary/5">
                                 {Object.keys((previewItem as CharacterArchive).secondaryStats!).map((s) => (
-                                  <th
-                                    key={s}
-                                    className="border border-primary/20 p-2 text-[10px] font-black text-primary/60"
-                                  >
+                                  <th key={s} className="border border-primary/20 p-2 text-[10px] font-black text-primary/60">
                                     {s}
                                   </th>
                                 ))}
@@ -342,10 +326,7 @@ export function PreviewPanel({
                             <tbody>
                               <tr>
                                 {Object.values((previewItem as CharacterArchive).secondaryStats!).map((val, i) => (
-                                  <td
-                                    key={i}
-                                    className="border border-primary/20 p-2 text-center font-bold text-primary/80"
-                                  >
+                                  <td key={i} className="border border-primary/20 p-2 text-center font-bold text-primary/80">
                                     {val}
                                   </td>
                                 ))}
@@ -416,6 +397,26 @@ export function PreviewPanel({
                       {(previewItem as CharacterArchive).notes}
                     </p>
                   </div>
+                </div>
+              )}
+
+              {previewItem.type === 'table' && results.length === 0 && (
+                <div className="py-12 text-center text-primary/30 italic">
+                  <TableIcon className="w-12 h-12 mx-auto mb-4 opacity-10" />
+                  <p>Kliknij w kafel tabeli, aby wylosować wyniki.</p>
+                </div>
+              )}
+
+              {previewItem.type === 'note' && (previewItem as NoteArchive).blocks.length === 0 && (
+                <div className="py-12 text-center text-primary/30 italic">
+                  <FileText className="w-12 h-12 mx-auto mb-4 opacity-10" />
+                  <p>Ta notatka jest pusta.</p>
+                </div>
+              )}
+
+              {previewItem.type === 'character' && (
+                <div className="hidden">
+                  <Users />
                 </div>
               )}
             </div>

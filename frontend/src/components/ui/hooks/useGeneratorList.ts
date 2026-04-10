@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { ArchiveItem, RandomTable, User } from '../../../types';
+import { ArchiveItem, ImportExportData, RandomTable, User } from '../../../types';
 import { performRoll, formatResultForClipboard } from '../utils/rollTable';
 
 interface UseGeneratorListProps {
@@ -60,6 +60,32 @@ export function useGeneratorList({
 
     onEdit(cloned as ArchiveItem);
     toast.info('Skopiowano do Twojego archiwum. Możesz teraz edytować.');
+  };
+
+  const handleExport = (item: ArchiveItem) => {
+    const data: ImportExportData = { generators: [item] };
+
+    const safeName = item.name
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: 'application/json;charset=utf-8',
+    });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${safeName || 'generator'}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    toast.success(`Wyeksportowano: ${item.name}`);
   };
 
   const copyToClipboard = () => {
@@ -145,6 +171,7 @@ export function useGeneratorList({
 
     handleRoll,
     handleClone,
+    handleExport,
     copyToClipboard,
     toggleVariant,
     handlePreview,

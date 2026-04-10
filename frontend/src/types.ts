@@ -63,10 +63,10 @@ export interface CharacterArchive {
   profession: string;
   description: string;
   stats: Record<string, number>;
-  secondaryStats?: Record<string, number>; // For 2ed
+  secondaryStats?: Record<string, number>;
   skills: string[];
   talents: string[];
-  equipment: string[]; // List of items
+  equipment: string[];
   notes: string;
   tags?: string[];
   ownerId: string;
@@ -85,5 +85,5 @@ export interface User {
 }
 
 export interface ImportExportData {
-  generators: RandomTable[];
+  generators: ArchiveItem[];
 }

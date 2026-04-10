@@ -1,0 +1,65 @@
+{
+  "id": "loot_cursed_item",
+  "name": "Łupy — Przeklęty przedmiot",
+  "description": "Generator przeklętych przedmiotów. Losuje sam artefakt, siłę klątwy, mroczny sekret i pochodzenie.",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Przedmiot", "source": "cursed_item" },
+    { "label": "Klątwa", "source": "artifact_curse_roll" },
+    { "label": "Mroczny sekret", "source": "artifact_curse" },
+    { "label": "Pochodzenie", "source": "artifact_origin" }
+  ],
+  "multiTables": {
+    "cursed_item": [
+      { "text": "Złoty pierścień — noszący czuje nieustanny głód", "weight": 1 },
+      { "text": "Piękny naszyjnik — skóra pod klejnotem powoli czernieje", "weight": 1 },
+      { "text": "Eliksir siły — podwaja siłę na godzinę, potem ból kości przez tydzień", "weight": 1 },
+      { "text": "Stara moneta — przynosi pecha, wyniki testów zawsze 1 gorsze", "weight": 2 },
+      { "text": "Medalion z okiem — właściciel śni o obserwatorze co noc", "weight": 2 },
+      { "text": "Flakon perfum — przyciąga bestialud jak na polowaniu", "weight": 2 },
+      { "text": "Nóż z czarnej stali — rany przezeń nie goją się naturalnie", "weight": 2 },
+      { "text": "Miecz krzyżowy — szepce nocą, nakazując atakować przyjaciół", "weight": 3 },
+      { "text": "Księga w czarnej oprawie — czytający zapomina o jedzeniu", "weight": 3 },
+      { "text": "Butelka eliksiru — wyśmienita w smaku, dodaje punkt Skażenia", "weight": 3 },
+      { "text": "Kamień spokoju — usuwa strach, noszący traci emocje", "weight": 3 },
+      { "text": "Zbroja z martwej skóry — chroni jak kolczuga, brak wypoczynku", "weight": 4 },
+      { "text": "Różdżka z kości — wskazuje skarby, przyciąga nieumarłych", "weight": 4 },
+      { "text": "Srebrna maska — widać prawdziwe oblicza wszystkich (przerażające)", "weight": 5 },
+      { "text": "Pluszowy królik — szepce imiona zmarłych swemu właścicielowi", "weight": 5 },
+      { "text": "Czaszka z brązu — mówi prawdę raz na dzień, każda prawda boli", "weight": 5 },
+      { "text": "Zwierciadło kieszonkowe — w odbiciu widać siebie martwego", "weight": 5 },
+      { "text": "Pierścień niewidzialności — działa, właściciel traci poczucie istnienia", "weight": 5 }
+    ],
+    "artifact_curse_roll": [
+      { "text": "Słaba — klątwa objawia się rzadko i często bywa lekceważona", "weight": 2 },
+      { "text": "Umiarkowana — przedmiot szybko pokazuje swoją cenę", "weight": 2 },
+      { "text": "Silna — skutki są trudne do zignorowania", "weight": 1 },
+      { "text": "Potężna — artefakt wydaje się niemal mieć własną wolę", "weight": 1 }
+    ],
+    "artifact_curse": [
+      { "text": "Przedmiot nie pozwala się łatwo porzucić — właściciel odczuwa niepokój po rozstaniu", "weight": 1 },
+      { "text": "Każde użycie zostawia na ciele nowy ciemny ślad", "weight": 1 },
+      { "text": "Noszący zaczyna śnić o miejscu, w którym przedmiot powstał", "weight": 1 },
+      { "text": "Artefakt szepcze nocą imiona zmarłych", "weight": 1 },
+      { "text": "Każda korzyść zdobyta dzięki temu przedmiotowi sprowadza później równie dotkliwą stratę", "weight": 1 },
+      { "text": "W pobliżu świątyń i miejsc poświęconych przedmiot staje się lodowaty", "weight": 1 },
+      { "text": "Właściciel stopniowo traci zaufanie do towarzyszy i wszędzie widzi zdradę", "weight": 1 },
+      { "text": "Przedmiot reaguje na krew i strach, jakby żywił się cierpieniem", "weight": 1 }
+    ],
+    "artifact_origin": [
+      { "text": "Wyniesiony z krypty, której pieczęci nie powinny były zostać naruszone", "weight": 1 },
+      { "text": "Zdobyty na ciele wisielca, którego nikt nie chciał pochować", "weight": 1 },
+      { "text": "Sprzedany potajemnie przez szabrowników z pola bitwy", "weight": 1 },
+      { "text": "Przywieziony przez kupca, który zaginął jeszcze przed świtem", "weight": 1 },
+      { "text": "Wydobyty z dna studni, do której od lat nikt nie zaglądał", "weight": 1 },
+      { "text": "Znaleziony w skrzyni opatrzonej zakazanymi znakami ochronnymi", "weight": 1 },
+      { "text": "Podarowany jako „rodzinna pamiątka” przez człowieka, który błagał, by go zabrać", "weight": 1 },
+      { "text": "Odnaleziony w ruinach kaplicy spalonej podczas dawnego najazdu", "weight": 1 }
+    ]
+  },
+  "tags": ["Wbudowane", "Łupy", "Klątwy"],
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "createdAt": "2026-04-10T00:00:00"
+}

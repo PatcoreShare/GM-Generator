@@ -1,0 +1,92 @@
+{
+  "id": "loot_magic_item",
+  "name": "Łupy — Magiczny przedmiot",
+  "description": "Generator magicznych przedmiotów. Losuje sam przedmiot, jego twórcę, rozgłos, historię i pochodzenie.",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Przedmiot", "source": "magic_item" },
+    { "label": "Twórca", "source": "magic_creator" },
+    { "label": "Rozgłos", "source": "magic_fame" },
+    { "label": "Historia", "source": "magic_history" },
+    { "label": "Pochodzenie", "source": "artifact_origin" }
+  ],
+  "multiTables": {
+    "magic_item": [
+      { "text": "Eliksir leczniczy (czerwony) — leczy 1k6+2 ran po wypiciu", "weight": 1 },
+      { "text": "Eliksir wigoru — przez godzinę siła +10, potem wyczerpanie", "weight": 1 },
+      { "text": "Eliksir odwagi — usuwa strach i grozę na 1 godzinę", "weight": 1 },
+      { "text": "Eliksir przemiany głosu — dowolny głos przez godzinę", "weight": 1 },
+      { "text": "Kamień ogniowy — jednorazowo przywołuje ogień bez krzesiwa", "weight": 1 },
+      { "text": "Kamień milczenia — cisza w promieniu 3 m przez 1 minutę", "weight": 1 },
+      { "text": "Butelka wody święconej — skuteczna przeciw nieumarłym i demonom", "weight": 1 },
+      { "text": "Fiolka z pyłem snów — wdychając, cel zasypia na 1k6+2 rundy", "weight": 1 },
+      { "text": "Amulet Sigmara — odporność na strach nieumarłych", "weight": 1 },
+      { "text": "Talizman śniącego — odpowiedź na jedno pytanie we śnie", "weight": 1 },
+      { "text": "Runiczny sztylet — zadaje +1 obrażeń, słabo świeci przy Chaosie", "weight": 1 },
+      { "text": "Błogosławiony sztylet Śalyi — rany zadane nim nie infekują", "weight": 1 },
+      { "text": "Zwój z zaklęciem Świetlnego Błysku — jednorazowy, oślepia cel na 1 rundę", "weight": 1 },
+      { "text": "Zwój detekcji magii — wskazuje przedmioty magiczne w 10 m", "weight": 1 },
+      { "text": "Magiczny worek — mieści 3× więcej niż wskazuje jego rozmiar", "weight": 1 },
+      { "text": "Pierścień ochronny — raz na dzień pochłania jeden cios, tępieje po użyciu", "weight": 1 },
+      { "text": "Pierścień z gwiazdą — widzenie w ciemności 30 min raz na dobę", "weight": 1 },
+      { "text": "Kompas wskazujący Warpstone — igła zbielała z przerażenia", "weight": 1 },
+      { "text": "Świeca prawdy — płonie zielono gdy ktoś w pobliżu kłamie", "weight": 1 },
+      { "text": "Flakon lodowego dymu — wybucha chmurą mrozu, zatrzymuje cel na 1 rundę", "weight": 1 },
+      { "text": "Pergamin ochronny Vereeny — zapisany modlitwą, chroni przed jednym urokiem", "weight": 1 },
+      { "text": "Kryształ widzenia — mglisty obraz miejsca, które właściciel zna", "weight": 1 },
+      { "text": "Eliksir odporności — przez godzinę brak efektów trucizny i chorób", "weight": 1 },
+      { "text": "Runa schronienia wyryta na kamieniu — ostrzega przed zbliżającymi się wrogami", "weight": 1 },
+      { "text": "Lusterko duszy — pokazuje prawdziwe intencje osoby w odbiciu", "weight": 1 }
+    ],
+    "magic_creator": [
+      { "text": "Wytworzony przez wędrownego alchemika, nieznane imię", "weight": 1 },
+      { "text": "Dzieło anonimowego ucznia Celestial College w Altdorfie", "weight": 1 },
+      { "text": "Wyrób mistrza runisty z Karaz-a-Karak — runy sygnowane", "weight": 1 },
+      { "text": "Pochodzi z pracowni Amethyst College — odcień śmierci wyczuwalny", "weight": 1 },
+      { "text": "Praca bretońskiej wiedźmy zielarska — zapiski po staroszaranyjsku", "weight": 1 },
+      { "text": "Wytworzył mag ex-collegium — wygnany za nielegalne eksperymenty", "weight": 1 },
+      { "text": "Dzieło mistrzowskiego aptekarza z Nuln", "weight": 1 },
+      { "text": "Rzemiosło nieznanego skavena — wygląd obcy, ale działa", "weight": 1 },
+      { "text": "Wyprodukowane seryjnie przez zakon Ulry — znaczek na spodzie", "weight": 1 },
+      { "text": "Twórca nieznany — przedmiot znaleziony w zapieczętowanej krypcie", "weight": 1 },
+      { "text": "Robota halflingiego szarlatana — zaskakująco skuteczna", "weight": 1 },
+      { "text": "Dawna elfia robota — starsza niż Imperium, detale nie do odtworzenia", "weight": 1 }
+    ],
+    "magic_fame": [
+      { "text": "Anonimowy — nikt go nie rozpoznaje", "weight": 3 },
+      { "text": "Lokalnie znany — uczeni z pobliskiego miasta wiedzą co to", "weight": 2 },
+      { "text": "Znany w kręgach magów — kolekcjonerzy zapłaciliby dobrze", "weight": 2 },
+      { "text": "Sławny — pojawia się w kronikach, ktoś może go szukać", "weight": 1 },
+      { "text": "Poszukiwany przez zakon — oddanie go może być niebezpieczne", "weight": 1 },
+      { "text": "Nielegalny — samo posiadanie jest przestępstwem w Imperium", "weight": 1 },
+      { "text": "Legendarny — historycy znają nazwę, ale myślą że zaginął", "weight": 1 }
+    ],
+    "magic_history": [
+      { "text": "Historia nieznana — znaleziony przy martwym nieznajomym", "weight": 3 },
+      { "text": "Podobno należał do zaginionego templariusza Sigmara", "weight": 1 },
+      { "text": "Skradziony z kolekcji kupca — może szuka", "weight": 1 },
+      { "text": "Przekazywany w rodzinie przez trzy pokolenia, skąd pochodzi — tajemnica", "weight": 1 },
+      { "text": "Zdobyty w boju z plemieniem Beastmen, runy ich nie obchodziły", "weight": 1 },
+      { "text": "Znaleziony w zapieczętowanej skrzynce z okresu Wojen Chaosu", "weight": 1 },
+      { "text": "Ostatni właściciel zginął w niewyjaśnionych okolicznościach", "weight": 1 },
+      { "text": "Podobno użyty podczas oblężenia Middenheim — opis w kronikach", "weight": 1 },
+      { "text": "Nabyty od szamana Greenskinów — trudno ocenić jak to możliwe", "weight": 1 },
+      { "text": "Sprowadzony z Arabyy przez kupca, który potem zaginął", "weight": 1 }
+    ],
+    "artifact_origin": [
+      { "text": "Wytworzony na zamówienie możnego patrona, który nie doczekał odbioru", "weight": 1 },
+      { "text": "Znaleziony wśród rzeczy martwego poszukiwacza przygód", "weight": 1 },
+      { "text": "Wyniesiony z ruin wieży czarodzieja", "weight": 1 },
+      { "text": "Odziedziczony po dawno zmarłym krewnym, o którym rodzina wolała milczeć", "weight": 1 },
+      { "text": "Kupiony od wędrownego handlarza, który zniknął tej samej nocy", "weight": 1 },
+      { "text": "Zdobyty podczas starcia z kultystami Chaosu", "weight": 1 },
+      { "text": "Przywieziony z dalekiej północy przez jedynego ocalałego z wyprawy", "weight": 1 },
+      { "text": "Wygrany w nieuczciwej grze karcianej, której nikt nie chce wspominać", "weight": 1 }
+    ]
+  },
+  "tags": ["Wbudowane", "Łupy", "Magia"],
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "createdAt": "2026-04-10T00:00:00"
+}

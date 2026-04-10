@@ -6,7 +6,7 @@ from app.api.routes_generators import router as generators_router
 from app.api.routes_import_export import router as import_export_router
 from app.core.config import settings
 from app.db import Base, SessionLocal, engine
-from app.seed import seed_users
+from app.seed import run_seed
 
 app = FastAPI(title="GM Generator API")
 
@@ -21,7 +21,7 @@ app.add_middleware(
 Base.metadata.create_all(bind=engine)
 
 with SessionLocal() as db:
-    seed_users(db)
+    run_seed(db)
 
 app.include_router(auth_router, prefix="/api", tags=["auth"])
 app.include_router(generators_router, prefix="/api", tags=["generators"])
