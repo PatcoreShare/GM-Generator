@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { ArchiveItem, ImportExportData, RandomTable, User } from '../../../types';
+import { ArchiveItem, ImportExportData, RandomTable, User, DiceArchive } from '../../../types';
 import { performRoll, formatResultForClipboard } from '../utils/rollTable';
+import { rollDice } from '../utils/rollDice';
 
 interface UseGeneratorListProps {
   generators: ArchiveItem[];
@@ -45,6 +46,64 @@ export function useGeneratorList({
     setLastRollCount(rollCount);
     setIsHistoryExpanded(false);
     setPreviewItem(table);
+  };
+
+  const handleDiceRoll = (diceItem: DiceArchive) => {
+    try {
+      const newResults = [];
+
+      for (let i = 0; i < rollCount; i++) {
+        const result = rollDice(diceItem.formula);
+        newResults.push({
+          sourceId: diceItem.id,
+          type: 'dice',
+          name: diceItem.name,
+          formula: diceItem.formula,
+          description: diceItem.description || '',
+          total: result.total,
+          rolls: result.rolls,
+          modifier: result.modifier,
+        });
+      }
+
+      setResults((prev) => [...newResults, ...prev].slice(0, 50));
+      setLastRollCount(rollCount);
+      setIsHistoryExpanded(false);
+      setPreviewItem(diceItem);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Błąd rzutu kośćmi');
+    }
+  };
+
+  const handleQuickUpdateDice = async (updatedDice: DiceArchive) => {
+    try {
+      const response = await fetch('/api/generators', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedDice),
+      });
+
+      if (!response.ok) {
+        throw new Error('Nie udało się zapisać zmian formuły');
+      }
+
+      const saved = await response.json();
+
+      setPreviewItem(saved);
+
+      setResults((prev) =>
+        prev.map((result) =>
+          result?.type === 'dice' && result?.sourceId === updatedDice.id
+            ? { ...result, formula: saved.formula, name: saved.name, description: saved.description || '' }
+            : result
+        )
+      );
+
+      toast.success('Zapisano nową formułę');
+    } catch (error) {
+      toast.error('Nie udało się zapisać formuły');
+      throw error;
+    }
   };
 
   const handleClone = (item: ArchiveItem) => {
@@ -120,29 +179,38 @@ export function useGeneratorList({
       return;
     }
 
+    if (item.type === 'dice') {
+      handleDiceRoll(item);
+      return;
+    }
+
     if (item.type === 'note') {
-      setResults((prev) => [
-        {
-          type: 'note',
-          name: item.name,
-          content: item.blocks[0]?.content || '',
-        },
-        ...prev,
-      ].slice(0, 50));
+      setResults((prev) =>
+        [
+          {
+            type: 'note',
+            name: item.name,
+            content: item.blocks[0]?.content || '',
+          },
+          ...prev,
+        ].slice(0, 50)
+      );
       setLastRollCount(1);
       return;
     }
 
     if (item.type === 'character') {
-      setResults((prev) => [
-        {
-          type: 'character',
-          name: item.name,
-          race: item.race,
-          profession: item.profession,
-        },
-        ...prev,
-      ].slice(0, 50));
+      setResults((prev) =>
+        [
+          {
+            type: 'character',
+            name: item.name,
+            race: item.race,
+            profession: item.profession,
+          },
+          ...prev,
+        ].slice(0, 50)
+      );
       setLastRollCount(1);
     }
   };
@@ -170,6 +238,8 @@ export function useGeneratorList({
     setPreviewItem,
 
     handleRoll,
+    handleDiceRoll,
+    handleQuickUpdateDice,
     handleClone,
     handleExport,
     copyToClipboard,

@@ -5,7 +5,7 @@ export interface TableOption {
   nestedTableId?: string;
 }
 
-export type ArchiveType = 'table' | 'note' | 'character';
+export type ArchiveType = 'table' | 'note' | 'character' | 'dice';
 
 export interface TableVariant {
   id: string;
@@ -56,6 +56,90 @@ export interface NoteArchive {
   createdAt: string;
 }
 
+export interface CharacterSkillItem {
+  id: string;
+  characteristic: string;
+  name: string;
+}
+
+export interface CharacterTalentItem {
+  id: string;
+  name: string;
+  description?: string;
+}
+
+export interface CharacterEquipmentItem {
+  id: string;
+  name: string;
+  quantity?: number | string;
+  encumbrance?: number | string;
+}
+
+export interface CharacterMeleeWeapon {
+  id: string;
+  name: string;
+  group?: string;
+
+  // 2ed: np. SB, SB+1, SB+2
+  // 4ed: np. +4
+  damage?: string;
+
+  // 4ed
+  reach?: string;
+
+  // 2ed lub ogólne
+  qualities?: string;
+
+  // 4ed
+  qualitiesFlaws?: string;
+
+  encumbrance?: number | string;
+  cost?: string;
+}
+
+export interface CharacterRangedWeapon {
+  id: string;
+  name: string;
+  range?: string;
+
+  // 2ed: np. SB, SB+3
+  // 4ed: np. +6
+  damage?: string;
+
+  reload?: string;
+
+  // 2ed lub ogólne
+  qualities?: string;
+
+  // 4ed
+  qualitiesFlaws?: string;
+
+  // 4ed
+  ammoType?: string;
+
+  encumbrance?: number | string;
+  cost?: string;
+}
+
+export interface CharacterArmourItem {
+  id: string;
+  name: string;
+
+  // lokacyjne AP
+  head?: number | string;
+  body?: number | string;
+  arms?: number | string;
+  legs?: number | string;
+
+  // 2ed
+  specialRules?: string;
+
+  // 4ed
+  qualities?: string;
+
+  encumbrance?: number | string;
+}
+
 export interface CharacterArchive {
   id: string;
   name: string;
@@ -64,11 +148,26 @@ export interface CharacterArchive {
   race: string;
   profession: string;
   description: string;
-  stats: Record<string, number>;
-  secondaryStats?: Record<string, number>;
-  skills: string[];
-  talents: string[];
-  equipment: string[];
+  stats: Record<string, number | string>;
+  secondaryStats?: Record<string, number | string>;
+  skills: CharacterSkillItem[];
+  talents: CharacterTalentItem[];
+
+  // zwykły ekwipunek / trappings
+  equipment: CharacterEquipmentItem[];
+
+  // wyposażenie bojowe
+  meleeWeapons?: CharacterMeleeWeapon[];
+  rangedWeapons?: CharacterRangedWeapon[];
+  armour?: CharacterArmourItem[];
+
+  // obciążenie
+  encumbrance?: {
+    current?: number | string;
+    max?: number | string;
+    notes?: string;
+  };
+
   notes: string;
   tags?: string[];
   ownerId: string;
@@ -78,7 +177,21 @@ export interface CharacterArchive {
   createdAt: string;
 }
 
-export type ArchiveItem = RandomTable | NoteArchive | CharacterArchive;
+export interface DiceArchive {
+  id: string;
+  name: string;
+  type: 'dice';
+  formula: string;
+  description?: string;
+  tags?: string[];
+  ownerId: string;
+  ownerName?: string;
+  isBuiltIn?: boolean;
+  isVisible?: boolean;
+  createdAt: string;
+}
+
+export type ArchiveItem = RandomTable | NoteArchive | CharacterArchive | DiceArchive;
 
 export interface User {
   id: string;

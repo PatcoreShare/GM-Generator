@@ -45,6 +45,39 @@ export function ResultRenderer({
     );
   }
 
+  if (data.type === 'dice') {
+    const modifierLabel =
+      data.modifier > 0 ? `+${data.modifier}` : data.modifier < 0 ? `${data.modifier}` : '0';
+
+    return (
+      <div className="space-y-2">
+        <span className="text-[10px] uppercase font-black text-primary/40 block">
+          Kości: {data.name}
+        </span>
+
+        <div className="inline-flex items-center px-2 py-1 rounded border border-primary/20 bg-primary/5 text-[10px] uppercase font-black tracking-widest text-primary/50 font-mono">
+          {data.formula}
+        </div>
+
+        <p className="text-sm text-primary/70">
+          Rzuty: <span className="font-bold">{Array.isArray(data.rolls) ? data.rolls.join(', ') : '-'}</span>
+        </p>
+
+        <p className="text-sm text-primary/70">
+          Modyfikator: <span className="font-bold">{modifierLabel}</span>
+        </p>
+
+        <p className="text-lg font-bold text-primary">
+          Suma: {data.total}
+        </p>
+
+        {data.description && (
+          <p className="text-xs italic text-primary/50">{data.description}</p>
+        )}
+      </div>
+    );
+  }
+
   if (data.text !== undefined && data.nested !== undefined) {
     return (
       <div className="space-y-2">

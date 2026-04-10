@@ -3,12 +3,14 @@ import { CommonFields } from './ui/sections/CommonFields';
 import { TableSection } from './ui/sections/TableSection';
 import { NoteSection } from './ui/sections/NoteSection';
 import { CharacterSection } from './ui/sections/CharacterSection';
+import { DiceSection } from './ui/sections/DiceSection';
 
 import { Button } from './ui/button';
 import {
   Table as TableIcon,
   FileText,
   User as UserIcon,
+  Dice5,
   Save,
   X,
 } from 'lucide-react';
@@ -25,6 +27,10 @@ export function GeneratorForm(props) {
     setShowTablePicker,
     allTables,
     handleRollFromTable,
+    diceFormula,
+    setDiceFormula,
+    diceDescription,
+    setDiceDescription,
   } = form;
 
   const getTableOptionCount = (table) => {
@@ -50,27 +56,27 @@ export function GeneratorForm(props) {
   };
 
   return (
-    <form
-      onSubmit={handleSave}
-      className="parchment-card p-8 space-y-6 border-primary/40 shadow-xl"
-    >
+    <div className="parchment-card p-8 space-y-6 border-primary/40 shadow-xl">
       <div className="flex justify-between items-center border-b-2 border-primary/20 pb-4">
         <div className="flex items-center gap-3">
           <div className="bg-primary/10 p-2 rounded">
             {type === 'table' && <TableIcon className="w-6 h-6 text-primary" />}
             {type === 'note' && <FileText className="w-6 h-6 text-primary" />}
             {type === 'character' && <UserIcon className="w-6 h-6 text-primary" />}
+            {type === 'dice' && <Dice5 className="w-6 h-6 text-primary" />}
           </div>
 
           <h2 className="text-2xl font-black fancy-heading uppercase tracking-tight text-primary">
             {initialData
               ? 'Edycja Archiwum'
-              : `Nowa ${
+              : `Nowe ${
                   type === 'table'
-                    ? 'Tabela'
+                    ? 'Tabele'
                     : type === 'note'
-                    ? 'Notatka'
-                    : 'Postać'
+                    ? 'Notatki'
+                    : type === 'character'
+                    ? 'Postaci'
+                    : 'Kości'
                 }`}
           </h2>
         </div>
@@ -85,7 +91,11 @@ export function GeneratorForm(props) {
             <X className="w-4 h-4 mr-2" /> Anuluj
           </Button>
 
-          <Button type="submit" className="wfrp-button">
+          <Button
+            type="button"
+            onClick={handleSave}
+            className="wfrp-button"
+          >
             <Save className="w-4 h-4 mr-2" /> Zapisz w Archiwum
           </Button>
         </div>
@@ -97,6 +107,14 @@ export function GeneratorForm(props) {
         {type === 'table' && <TableSection {...form} />}
         {type === 'note' && <NoteSection {...form} />}
         {type === 'character' && <CharacterSection {...form} />}
+        {type === 'dice' && (
+          <DiceSection
+            formula={diceFormula}
+            setFormula={setDiceFormula}
+            description={diceDescription}
+            setDescription={setDiceDescription}
+          />
+        )}
       </div>
 
       {showTablePicker && (
@@ -152,6 +170,6 @@ export function GeneratorForm(props) {
           </div>
         </div>
       )}
-    </form>
+    </div>
   );
 }

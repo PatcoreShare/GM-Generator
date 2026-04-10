@@ -17,6 +17,7 @@ import {
   FileText,
   Users,
   Table as TableIcon,
+  Dice5,
   X,
 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -33,7 +34,7 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('Wszystkie');
   const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
-  const [createType, setCreateType] = useState<'table' | 'note' | 'character'>('table');
+  const [createType, setCreateType] = useState<'table' | 'note' | 'character' | 'dice'>('table');
   const [showTypeSelector, setShowTypeSelector] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<string | null>(null);
 
@@ -122,7 +123,6 @@ export default function App() {
     setView('edit');
   };
 
-  // Kategorie
   const categories: string[] = ['Wszystkie'];
 
   if (user?.role === 'admin') {
@@ -133,7 +133,6 @@ export default function App() {
   categories.push(...allTags.sort());
 
   const filteredItems = items.filter((g) => {
-    // ukryte generatory – nie pokazujemy ich na liście zwykłemu użytkownikowi
     const hiddenForUser = user?.role !== 'admin' && g.isVisible === false;
     if (hiddenForUser) return false;
 
@@ -327,7 +326,7 @@ export default function App() {
                         </div>
                       )}
                       <GeneratorList
-                        generators={filteredItems as RandomTable[]}
+                        generators={filteredItems as ArchiveItem[]}
                         allTables={items.filter((i) => i.type === 'table') as RandomTable[]}
                         onEdit={handleEdit}
                         onDelete={handleDelete}
@@ -342,7 +341,7 @@ export default function App() {
             {(view === 'create' || view === 'edit') && (
               <div className="flex-1 max-w-4xl mx-auto">
                 <GeneratorForm
-                  initialData={selectedItem as RandomTable}
+                  initialData={selectedItem as any}
                   allTables={items.filter((i) => i.type === 'table') as RandomTable[]}
                   onSave={handleSave}
                   onCancel={() => setView('list')}
@@ -375,7 +374,7 @@ export default function App() {
 
       {showTypeSelector && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4">
-          <div className="parchment-card max-w-2xl w-full p-8 space-y-8 animate-in zoom-in-95 duration-200">
+          <div className="parchment-card max-w-3xl w-full p-8 space-y-8 animate-in zoom-in-95 duration-200">
             <div className="flex justify-between items-center border-b border-primary/20 pb-4">
               <h2 className="text-2xl font-black fancy-heading uppercase tracking-tight text-primary">
                 Wybierz Typ Archiwum
@@ -390,7 +389,7 @@ export default function App() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
               <button
                 onClick={() => {
                   setSelectedItem(null);
@@ -453,6 +452,28 @@ export default function App() {
                   </span>
                   <span className="text-[10px] text-primary/40 uppercase font-bold">
                     Karta bohatera
+                  </span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => {
+                  setSelectedItem(null);
+                  setCreateType('dice');
+                  setView('create');
+                  setShowTypeSelector(false);
+                }}
+                className="parchment-card p-8 flex flex-col items-center gap-4 hover:border-primary transition-all group bg-primary/5"
+              >
+                <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
+                  <Dice5 className="w-8 h-8 text-primary" />
+                </div>
+                <div className="text-center">
+                  <span className="block font-black uppercase tracking-widest text-sm text-primary">
+                    Kości
+                  </span>
+                  <span className="text-[10px] text-primary/40 uppercase font-bold">
+                    Rzut XdY+Z
                   </span>
                 </div>
               </button>
