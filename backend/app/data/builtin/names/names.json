@@ -1,0 +1,44 @@
+{
+  "id": "imiona",
+  "name": "Imiona",
+  "type": "table",
+  "description": "",
+  "subType": "complex",
+  "fields": [
+    {
+      "label": "Albion",
+      "source": "field_1"
+    },
+    {
+      "label": "Tilea",
+      "source": "field_2"
+    }
+  ],
+  "multiTables": {
+    "field_1": [
+      {
+        "id": "4f2fd3b6-3bc8-4400-8722-dda71eb8ead3",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "imiona-albion"
+      }
+    ],
+    "field_2": [
+      {
+        "id": "c1e4e65c-b7af-4d4a-ac1d-97e2e3faca99",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "imiona-tilea"
+      }
+    ]
+  },
+  "tags": [
+    "Imiona",
+    "Wbudowane"
+  ],
+  "ownerId": "builtin",
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "isVisible": true,
+  "createdAt": "2026-04-10T10:06:54.641134Z"
+}

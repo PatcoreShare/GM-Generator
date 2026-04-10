@@ -28,6 +28,7 @@ class GeneratorPayload(BaseModel):
     ownerId: str | None = None
     ownerName: str | None = None
     isBuiltIn: bool = False
+    isVisible: bool = True
     tags: list[str] = Field(default_factory=list)
     createdAt: datetime | None = None
 

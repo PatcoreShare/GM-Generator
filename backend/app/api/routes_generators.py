@@ -23,13 +23,17 @@ def get_generators(
     if role != "admin":
         if not userId:
             return []
+
         try:
             owner_uuid = uuid.UUID(userId)
         except ValueError:
             raise HTTPException(status_code=400, detail="Nieprawidłowy userId")
 
         query = query.filter(
-            or_(GeneratorDB.owner_id == owner_uuid, GeneratorDB.is_built_in.is_(True))
+            or_(
+                GeneratorDB.owner_id == owner_uuid,
+                GeneratorDB.is_built_in.is_(True)
+            )
         )
 
     items = query.order_by(GeneratorDB.created_at.desc()).all()

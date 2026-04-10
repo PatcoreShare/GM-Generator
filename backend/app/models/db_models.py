@@ -39,6 +39,8 @@ class GeneratorDB(Base):
     owner_name: Mapped[str | None] = mapped_column(String(100), nullable=True)
 
     is_built_in: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    is_visible: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+
     tags: Mapped[list] = mapped_column(JSONB, default=list, nullable=False)
     data: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
 

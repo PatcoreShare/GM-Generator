@@ -2,20 +2,20 @@ export interface TableOption {
   id: string;
   text: string;
   weight: number;
-  nestedTableId?: string; // ID of another table to roll on if this option is selected
+  nestedTableId?: string;
 }
 
 export type ArchiveType = 'table' | 'note' | 'character';
 
 export interface TableVariant {
   id: string;
-  name: string; // e.g., "Elf", "Człowiek"
+  name: string;
   options: TableOption[];
 }
 
 export interface TableField {
   label: string;
-  source: string; // key in multiTables
+  source: string;
 }
 
 export interface RandomTable {
@@ -24,22 +24,23 @@ export interface RandomTable {
   description: string;
   type: 'table';
   subType: 'simple' | 'complex';
-  options: TableOption[]; // for simple
-  variants?: TableVariant[]; // for simple
-  fields?: TableField[]; // for complex
-  multiTables?: Record<string, TableOption[]>; // for complex
+  options: TableOption[];
+  variants?: TableVariant[];
+  fields?: TableField[];
+  multiTables?: Record<string, TableOption[]>;
   tags?: string[];
   ownerId: string;
   ownerName?: string;
   isBuiltIn?: boolean;
+  isVisible?: boolean;
   createdAt: string;
 }
 
 export interface NoteBlock {
   id: string;
   type: 'text' | 'image';
-  content: string; // text content or image URL
-  width?: string; // for images
+  content: string;
+  width?: string;
 }
 
 export interface NoteArchive {
@@ -51,6 +52,7 @@ export interface NoteArchive {
   ownerId: string;
   ownerName?: string;
   isBuiltIn?: boolean;
+  isVisible?: boolean;
   createdAt: string;
 }
 
@@ -72,6 +74,7 @@ export interface CharacterArchive {
   ownerId: string;
   ownerName?: string;
   isBuiltIn?: boolean;
+  isVisible?: boolean;
   createdAt: string;
 }
 

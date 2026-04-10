@@ -17,6 +17,10 @@ export function ResultRenderer({
     );
   }
 
+  if (!data) {
+    return null;
+  }
+
   if (data.type === 'note') {
     return (
       <div className="space-y-1">

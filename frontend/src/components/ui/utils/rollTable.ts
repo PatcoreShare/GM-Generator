@@ -21,9 +21,13 @@ export const formatResultForClipboard = (res: any, indent = 0): string => {
   }
 
   if (res.text !== undefined && res.nested !== undefined) {
-    const nestedTitle = res.nestedTableName
+    const shouldShowNestedTitle =
+      res.nestedTableName && res.nestedIsVisible !== false;
+
+    const nestedTitle = shouldShowNestedTitle
       ? `\n${space}Z generatora: ${res.nestedTableName}`
       : '';
+
     const ownText = res.text ? `${space}${res.text}\n` : '';
 
     return `${ownText}${nestedTitle}\n${formatResultForClipboard(
@@ -80,6 +84,7 @@ export function performRoll({
                 nested: nestedRes,
                 nestedTableId: nestedTable.id,
                 nestedTableName: nestedTable.name,
+                nestedIsVisible: nestedTable.isVisible !== false,
               };
               break;
             }
@@ -128,6 +133,7 @@ export function performRoll({
             nested: nestedRes,
             nestedTableId: nestedTable.id,
             nestedTableName: nestedTable.name,
+            nestedIsVisible: nestedTable.isVisible !== false,
           };
         }
       }
