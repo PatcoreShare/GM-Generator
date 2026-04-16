@@ -27,7 +27,6 @@ export function useGeneratorForm({
 }: UseGeneratorFormParams) {
   const [name, setName] = useState(initialData?.name || '');
   const [tags, setTags] = useState(initialData?.tags?.join(', ') || '');
-  const [isBuiltIn, setIsBuiltIn] = useState(Boolean(initialData?.isBuiltIn) || false);
 
   const [description, setDescription] = useState(initialData?.description || '');
   const [subType, setSubType] = useState(initialData?.subType || 'simple');
@@ -471,18 +470,12 @@ export function useGeneratorForm({
       .map((tag) => tag.trim())
       .filter((tag) => tag !== '');
 
-    const finalTags =
-      currentUser?.role === 'admin' && isBuiltIn
-        ? Array.from(new Set([...normalizedTags, 'Wbudowane']))
-        : normalizedTags.filter((tag) => tag !== 'Wbudowane');
-
     const baseItem = {
       id: initialData?.id || crypto.randomUUID(),
       name,
-      tags: finalTags,
+      tags: normalizedTags,
       ownerId: initialData?.ownerId || currentUser?.id,
       ownerName: initialData?.ownerName || currentUser?.username,
-      isBuiltIn: currentUser?.role === 'admin' ? isBuiltIn : false,
       createdAt: initialData?.createdAt || new Date().toISOString(),
     };
 
@@ -558,8 +551,6 @@ export function useGeneratorForm({
     setName,
     tags,
     setTags,
-    isBuiltIn,
-    setIsBuiltIn,
 
     description,
     setDescription,

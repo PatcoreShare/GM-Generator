@@ -1,0 +1,49 @@
+{
+  "id": "city_persons",
+  "name": "Zaangażowane strony",
+  "description": "Generator osób, frakcji i grup zamieszanych w miejskie wydarzenie w Starym Świecie.",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Zaangażowane strony", "source": "stary_swiat_aktorzy" }
+  ],
+  "multiTables": {
+    "stary_swiat_aktorzy": [
+      { "text": "Straż miejska, zmęczona, brutalna i podatna na łapówki", "weight": 1 },
+      { "text": "Kapłan Sigmara oraz jego gorliwi wierni", "weight": 1 },
+      { "text": "Kapłanka Shallyi, próbująca zapobiec rozlewowi krwi", "weight": 1 },
+      { "text": "Sługa Morra, który widzi w wydarzeniach zły omen", "weight": 1 },
+      { "text": "Łowca czarownic z asystentem, pisarzem i pistoletem", "weight": 1 },
+      { "text": "Gildia kupiecka dbająca bardziej o zysk niż o porządek", "weight": 1 },
+      { "text": "Cech rzemieślników, który broni swoich wpływów", "weight": 1 },
+      { "text": "Bandyci spod znaku noża, ściągający haracze z okolicy", "weight": 1 },
+      { "text": "Złodzieje i kieszonkowcy działający pod ochroną półświatka", "weight": 1 },
+      { "text": "Żebracy, włóczędzy i uliczni informatorzy, którzy widzą więcej niż inni", "weight": 1 },
+      { "text": "Wędrowny kuglarz, medyk, znachor albo szarlatan", "weight": 1 },
+      { "text": "Rodzina zaginionego, przerażona i gotowa zapłacić za pomoc", "weight": 1 },
+      { "text": "Patrycjusz, urzędnik albo poborca skrywający własne przewiny", "weight": 1 },
+      { "text": "Przybysze z prowincji lub uchodźcy z terenów dotkniętych wojną", "weight": 1 },
+      { "text": "Najemnicy pilnujący towaru, dłużnika albo niewygodnego świadka", "weight": 1 },
+      { "text": "Czeladnicy i terminatorzy buntujący się przeciw mistrzom", "weight": 1 },
+      { "text": "Fanatyczny kaznodzieja głoszący rychłą karę bogów", "weight": 1 },
+      { "text": "Skryba, prawnik lub urzędnik posiadający niewygodne dokumenty", "weight": 1 },
+      { "text": "Dom publiczny i jego właścicielka, która wie zbyt wiele", "weight": 1 },
+      { "text": "Karczmarz, który udaje głupszego, niż jest naprawdę", "weight": 1 },
+      { "text": "Podejrzanie bogaty kupiec mający kontakty poza miastem", "weight": 1 },
+      { "text": "Grabarze, dozorcy cmentarza albo ludzie od przewożenia trupów", "weight": 1 },
+      { "text": "Przemytnicy korzystający z kanałów, piwnic i bocznych bram", "weight": 1 },
+      { "text": "Potajemny kult, który jeszcze nie został zdemaskowany", "weight": 1 },
+      { "text": "Mutant ukrywany przez rodzinę albo wykorzystywany przez zbirów", "weight": 1 },
+      { "text": "Skaveńscy agenci działający z ukrycia, o ile w ogóle ktoś w nich wierzy", "weight": 1 },
+      { "text": "Szpiedzy obcego państwa, kupieckiego domu albo lokalnego możnowładcy", "weight": 1 },
+      { "text": "Dzieci ulicy, które coś widziały, ale boją się mówić", "weight": 1 },
+      { "text": "Medyk, aptekarz albo alchemik mieszający się w sprawy, których nie rozumie", "weight": 1 },
+      { "text": "Lokalny weteran wojenny, którego wszyscy lekceważą, choć zna prawdę", "weight": 1 }
+    ]
+  },
+  "tags": ["Wydarzenia"],
+  "ownerName": "System",
+  "isVisible": false,
+  "isBuiltIn": true,
+  "createdAt": "2026-04-15T00:00:00"
+}

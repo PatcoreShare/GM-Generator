@@ -1,0 +1,79 @@
+{
+  "id": "dok_rzeczny_skrajnosci_warhammer",
+  "name": "Port i Doki",
+  "description": "Generator portu rzecznego lub morskiego w Starym Świecie, uwzględniający skrajności: od mrocznych kultów, korupcji i zgnilizny, po niezwykle bezpieczne oazy, krasnoludzkich inżynierów i lukratywne okazje.",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Co wyróżnia ten port?", "source": "dok_wyroznik" },
+    { "label": "Ochrona statków i ładunków", "source": "dok_ochrona" },
+    { "label": "Z kim trzeba się użerać?", "source": "dok_personel" },
+    { "label": "Kto szuka kontaktu?", "source": "dok_potrzebujacy" },
+    { "label": "Rozrywka na brzegu", "source": "dok_rozrywka" },
+    { "label": "Główny problem / wydarzenie", "source": "dok_problem" }
+  ],
+  "multiTables": {
+    "dok_wyroznik": [
+      { "text": "Mroczny Kult. Port jest opustoszały; lokalni rybacy po cichu oddają cześć mrocznym bogom głębin, szykując krwawe ofiary.", "weight": 1 },
+      { "text": "Ksenofobia. Miejscowi panicznie boją się obcych, zamykają okiennice, plują pod nogi i odmawiają sprzedaży nawet czerstwego chleba.", "weight": 1 },
+      { "text": "Zgniła infrastruktura. Urządzenia portowe (dźwigi, pomosty) grożą zawaleniem przy każdym mocniejszym podmuchu wiatru.", "weight": 1 },
+      { "text": "Zwykła bieda. Zwykła, brudna i szara przystań, gdzie pijani dokerzy próbują zarobić parę miedziaków na jedzenie.", "weight": 1 },
+      { "text": "Nadmierny przepych. Wszystko jest absurdalnie czyste i nowobogackie, ale ceny dla przyjezdnych są zawyżone dziesięciokrotnie.", "weight": 1 },
+      { "text": "Tajna stocznia krasnoludów. Na uboczu znajduje się znakomity krasnoludzki inżynier oferujący naprawy i ulepszenia statków najwyższej jakości.", "weight": 1 },
+      { "text": "Bezpieczna oaza. Niezwykle przyjazne i dobrze zaopatrzone miejsce; lokalna milicja z uśmiechem wita podróżnych, oferując ciepły posiłek i darmowe leczenie.", "weight": 1 }
+    ],
+    "dok_ochrona": [
+      { "text": "Brak ochrony. Ładunki leżą w błocie, stanowiąc darmowy bufet dla zmutowanych szczurów, złodziei i pijaków.", "weight": 1 },
+      { "text": "Haracz Gildii. Miejscowi bandyci zrzeszeni w lokalnej gildii brutalnie wymuszają opłaty za ochronę; bez nich towar magicznie ląduje w rzece.", "weight": 1 },
+      { "text": "Złodziejski zarządca. Urzędnik siłą rekwiruje część cennego ładunku do swoich magazynów pod pretekstem koniecznej kontroli celnej.", "weight": 1 },
+      { "text": "Paranoiczna Milicja. Strażnicy przeszukują każdą beczkę w poszukiwaniu spaczenia, często uszkadzając towar i tracąc cenny czas graczy.", "weight": 1 },
+      { "text": "Klasztorna ochrona. Towarów strzegą milczący mnisi boga rzek; za drobną ofiarę ładunek jest w pełni chroniony przed złodziejami.", "weight": 1 },
+      { "text": "Magiczne runy. Bogaty portmistrz używa magicznych pieczęci – każdy, kto dotknie cudzego towaru, zostaje na miejscu sparaliżowany (lub gorzej).", "weight": 1 },
+      { "text": "Honorowa Kompania Najemna. Uczciwi i doskonale wyszkoleni weterani chronią port; u nich ładunek i statek są w stu procentach bezpieczne.", "weight": 1 }
+    ],
+    "dok_personel": [
+      { "text": "Łowcy Czarownic. Port jest obstawiony przez fanatycznych Inkwizytorów, którzy w każdym przyjezdnym widzą mutanta lub heretyka.", "weight": 1 },
+      { "text": "Skorumpowany urzędnik. Kapitan portu to chciwy aparatczyk; za każdy podpis i pozwolenie żąda niebotycznych, brzęczących łapówek.", "weight": 1 },
+      { "text": "Niekompetencja. Pijani pracownicy upuszczają skrzynie do rzeki, gubią listy przewozowe i źle wiążą węzły cumownicze statków.", "weight": 1 },
+      { "text": "Dziwaczne przesądy. Obsługa oczekuje rzucania soli za lewe ramię, spluwania do rzeki i składania ofiar przed zejściem na brzeg.", "weight": 1 },
+      { "text": "Zmonopolizowani. Cały personel obsługuje imperialny transport wojskowy; cywile muszą czekać dniami, chyba że mają dobre plecy.", "weight": 1 },
+      { "text": "Znudzona arystokracja. Zblazowani szlachcice traktują obcych jak maskotki, oferując absurdalnie wysokie nagrody za proste, lecz uwłaczające przysługi.", "weight": 1 },
+      { "text": "Dawny znajomy / Dłużnik. Zarządcą doków okazuje się stary przyjaciel z wojska lub dłużnik graczy, który bez pytania załatwia wszystko za darmo.", "weight": 1 },
+      { "text": "Cudotwórczyni kapłanka. W dokach działa uzdrowicielka Shallyi, która za darmo i skutecznie leczy wszelkie rany i rzeczne choroby.", "weight": 1 }
+    ],
+    "dok_potrzebujacy": [
+      { "text": "Fałszywy zleceniodawca. Łowca nagród w przebraniu, który pod pozorem zyskownego zlecenia chce zwabić Graczy w śmiertelną pułapkę lub areszt.", "weight": 1 },
+      { "text": "Oszust i paser. Próbuje wcisnąć podróżnikom lewe dokumenty lub wrobić ich w posiadanie niedawno skradzionego (lub mrocznego) ładunku.", "weight": 1 },
+      { "text": "Zdemaskowany kultysta. Błaga o wywiezienie z miasta przed świtem; w nagrodę oferuje mroczne księgi lub nieświęte złoto zrabowane z kaplic.", "weight": 1 },
+      { "text": "Pogardzany nędzarz. Ścigany przez lichwiarzy wyrzutek, błagający o azyl i pracę na statku w zamian za bycie wiernym parobkiem.", "weight": 1 },
+      { "text": "Szalony wynalazca. Posiada genialny, ale ryzykowny prototyp napędu parowego, który chce zamontować na statku graczy (zupełnie za darmo).", "weight": 1 },
+      { "text": "Bogaty kupiec w opałach. Zastraszony przez gangi kupiec szuka zbrojnej eskorty dla siebie i swojej wyśmienitej żony – płaci czystym złotem za ochronę.", "weight": 1 },
+      { "text": "Arystokrata szukający przygód. Znudzony panicz z potężnego rodu, który hojnie zapłaci za możliwość popłynięcia w prawdziwą i niebezpieczną podróż.", "weight": 1 },
+      { "text": "Wdzięczny Inkwizytor. Graczom oferuje lukratywny kontrakt rządowy i listy żelazne w zamian za dyskretny transport bardzo cennego (i niebezpiecznego) więźnia.", "weight": 1 }
+    ],
+    "dok_rozrywka": [
+      { "text": "Plac kaźni. Darmową rozrywką są publiczne egzekucje, łamanie kołem i obrzucanie skazańców (lub podejrzanych obcych) zgniłym jedzeniem.", "weight": 1 },
+      { "text": "Upiorny zamtuz. Mroczny, brudny dom uciech oferujący usługi moralnie i fizycznie odrażające; w nocy często giną tu klienci.", "weight": 1 },
+      { "text": "Nielegalne walki psów. Krwawe starcia zmutowanych zwierząt w zatęchłej piwnicy; można tu szybko zarobić, o ile potrafi się unikać uciekających bestii.", "weight": 1 },
+      { "text": "Trupia Główka. Zwykła, tonąca w błocie mordownia, gdzie noże idą w ruch z byle powodu, ale alkohol jest bardzo tani i mocny.", "weight": 1 },
+      { "text": "Arena w spichlerzu. Uczciwe walki na gołe pięści do pierwszej krwi; chłopi i rzemieślnicy walczą tu o szacunek, a gracze mogą dorobić w zakładach.", "weight": 1 },
+      { "text": "Jarmark cudów. Bezpieczny, kolorowy, objazdowy cyrk i kuglarze; można tu kupić ciekawe drobiazgi i egzotyczne przyprawy.", "weight": 1 },
+      { "text": "Łaźnie i termy. Ekskluzywne miejsce odnowy z gorącą wodą, masażami i wyśmienitym winem; drogie, ale leczy rany i przywraca punkty obłędu.", "weight": 1 },
+      { "text": "Gospoda Pod Złotym Gryfem. Najlepsza karczma w regionie. Doskonałe jedzenie, bezpieczne pokoje z zamkami i wesoła muzyka krasnoludzkich bardów do białego rana.", "weight": 1 }
+    ],
+    "dok_problem": [
+      { "text": "Epidemia. W dokach nagle wybucha zaraza (np. Gnicie Nurgla); świątynie zamykają bramy, a wojsko otacza port ścisłym, krwawym kordonem sanitarnym.", "weight": 1 },
+      { "text": "Kataklizm pogodowy. Nadciąga potworna powódź lub silna, nienaturalna burza magiczna; woda porywa zacumowane mniejsze barki i niszczy pomosty.", "weight": 1 },
+      { "text": "Zawał infrastruktury. Stary, rdzewiejący most lub główna śluza ulega zawaleniu wprost do rzeki, skutecznie blokując jedyną drogę dalszej żeglugi.", "weight": 1 },
+      { "text": "Wojna gangów. Na ulicach doków i w magazynach zaczyna się brutalna, otwarta strzelanina z użyciem kusz i pistoletów między lokalnymi gildiami.", "weight": 1 },
+      { "text": "Masowe fałszerstwa. Całe tutejsze złoto i niemal wszystkie towary to oszustwo; kto handlował w porcie, zorientuje się za późno, że został z trocinami i fałszywkami.", "weight": 1 },
+      { "text": "Festiwal głupców. Trwa dziki, pijacki festiwal (Festag), który zupełnie wymknął się spod kontroli straży; panuje całkowity chaos i rozpasanie.", "weight": 1 },
+      { "text": "Polowanie. Bezwzględni łowcy nagród z imperialnymi nakazami wpadają do portu z listami gończymi, które łudząco przypominają rysopisy graczy.", "weight": 1 },
+      { "text": "Łaskawa Rzeka. Podczas nienaturalnie niskiego stanu wody rzeka odsłania zatopiony niegdyś krasnoludzki statek parowy pełen szczelnie zamkniętych skarbców, prowokując natychmiastową gorączkę złota wśród wszystkich w porcie.", "weight": 1 }
+    ]
+  },
+  "tags": ["Lokacje"],
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "createdAt": "2026-04-16T13:22:00"
+}

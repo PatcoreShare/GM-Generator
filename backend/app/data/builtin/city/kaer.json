@@ -1,0 +1,105 @@
+{
+  "id": "kaer",
+  "name": "Kaer",
+  "type": "table",
+  "description": "Generator kaeru z podziałem na stan, wielkość, populację, język i dziwactwa.",
+  "subType": "complex",
+  "options": [],
+  "fields": [
+    { "label": "Stan", "source": "kaer_stan" },
+    { "label": "Ranga / wielkość", "source": "kaer_ranga" },
+    { "label": "Liczba mieszkańców", "source": "kaer_mieszkancy" },
+    { "label": "Zdarzenie miejskie / dzień", "source": "kaer_zdarzenie" },
+    { "label": "Obecność innych ras", "source": "kaer_rasy" },
+    { "label": "Szansa na nauczyciela", "source": "kaer_nauczyciel" },
+    { "label": "Pożądane zaopatrzenie / usługa", "source": "kaer_zapotrzebowanie" },
+    { "label": "Dziwactwo k6", "source": "kaer_dziwactwo_k6" },
+    { "label": "Dziwactwo k12", "source": "kaer_dziwactwo_k12" }
+  ],
+  "multiTables": {
+    "kaer_stan": [
+      { "id": "kaer_stan_1", "text": "Pusty", "weight": 1 },
+      { "id": "kaer_stan_2", "text": "Wyniszczony", "weight": 1 },
+      { "id": "kaer_stan_3", "text": "Niedobory", "weight": 1 },
+      { "id": "kaer_stan_4", "text": "Spokojny", "weight": 1 },
+      { "id": "kaer_stan_5", "text": "Prężny", "weight": 1 },
+      { "id": "kaer_stan_6", "text": "Bogaty", "weight": 1 }
+    ],
+    "kaer_ranga": [
+      { "id": "kaer_ranga_1", "text": "Mały", "weight": 1 },
+      { "id": "kaer_ranga_2", "text": "Niewielki", "weight": 1 },
+      { "id": "kaer_ranga_3", "text": "Średni", "weight": 1 },
+      { "id": "kaer_ranga_4", "text": "Spory", "weight": 1 },
+      { "id": "kaer_ranga_5", "text": "Wielki", "weight": 1 },
+      { "id": "kaer_ranga_6", "text": "Cytadela", "weight": 1 }
+    ],
+    "kaer_mieszkancy": [
+      { "id": "kaer_mieszkancy_1", "text": "k10 x k20", "weight": 1 },
+      { "id": "kaer_mieszkancy_2", "text": "k10 x k100", "weight": 1 },
+      { "id": "kaer_mieszkancy_3", "text": "k20 x k100", "weight": 1 },
+      { "id": "kaer_mieszkancy_4", "text": "k4 x k1000", "weight": 1 },
+      { "id": "kaer_mieszkancy_5", "text": "k6 x k1000", "weight": 1 },
+      { "id": "kaer_mieszkancy_6", "text": "k10 x k1000", "weight": 1 }
+    ],
+    "kaer_zdarzenie": [
+      { "id": "kaer_zdarzenie_1", "text": "-", "weight": 1 },
+      { "id": "kaer_zdarzenie_2", "text": "-", "weight": 1 },
+      { "id": "kaer_zdarzenie_3", "text": "50%", "weight": 1 },
+      { "id": "kaer_zdarzenie_4", "text": "1", "weight": 1 },
+      { "id": "kaer_zdarzenie_5", "text": "1", "weight": 1 },
+      { "id": "kaer_zdarzenie_6", "text": "2", "weight": 1 }
+    ],
+    "kaer_rasy": [
+      { "id": "kaer_rasy_1", "text": "", "weight": 1 },
+      { "id": "kaer_rasy_2", "text": "", "weight": 1 },
+      { "id": "kaer_rasy_3", "text": "33%", "weight": 1 },
+      { "id": "kaer_rasy_4", "text": "k3-1", "weight": 1 },
+      { "id": "kaer_rasy_5", "text": "k4", "weight": 1 },
+      { "id": "kaer_rasy_6", "text": "2k4", "weight": 1 }
+    ],
+    "kaer_nauczyciel": [
+      { "id": "kaer_nauczyciel_1", "text": "15%", "weight": 1 },
+      { "id": "kaer_nauczyciel_2", "text": "25%", "weight": 1 },
+      { "id": "kaer_nauczyciel_3", "text": "30%", "weight": 1 },
+      { "id": "kaer_nauczyciel_4", "text": "40%", "weight": 1 },
+      { "id": "kaer_nauczyciel_5", "text": "50%", "weight": 1 },
+      { "id": "kaer_nauczyciel_6", "text": "60%", "weight": 1 }
+    ],
+    "kaer_zapotrzebowanie": [
+      { "id": "kaer_zapotrzebowanie_1", "text": "15%", "weight": 1 },
+      { "id": "kaer_zapotrzebowanie_2", "text": "25%", "weight": 1 },
+      { "id": "kaer_zapotrzebowanie_3", "text": "40%", "weight": 1 },
+      { "id": "kaer_zapotrzebowanie_4", "text": "60%", "weight": 1 },
+      { "id": "kaer_zapotrzebowanie_5", "text": "75%", "weight": 1 },
+      { "id": "kaer_zapotrzebowanie_6", "text": "90%", "weight": 1 }
+    ],
+    "kaer_dziwactwo_k6": [
+      { "id": "kaer_dziwactwo_k6_1", "text": "zanik", "weight": 1 },
+      { "id": "kaer_dziwactwo_k6_2", "text": "degeneracja", "weight": 1 },
+      { "id": "kaer_dziwactwo_k6_3", "text": "rozluźnienie / chaos", "weight": 1 },
+      { "id": "kaer_dziwactwo_k6_4", "text": "dziwne", "weight": 1 },
+      { "id": "kaer_dziwactwo_k6_5", "text": "eksponowane", "weight": 1 },
+      { "id": "kaer_dziwactwo_k6_6", "text": "cześć", "weight": 1 }
+    ],
+    "kaer_dziwactwo_k12": [
+      { "id": "kaer_dziwactwo_k12_1", "text": "podstawowe umiej.", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_2", "text": "wiedza ogólna", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_3", "text": "kultura wyższa", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_4", "text": "zwyczaje / cechy psy.", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_5", "text": "ciało / cechy fiz.", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_6", "text": "ubiór", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_7", "text": "seks", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_8", "text": "więzi rodzinne", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_9", "text": "struktura społeczna", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_10", "text": "władza", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_11", "text": "sekta", "weight": 1 },
+      { "id": "kaer_dziwactwo_k12_12", "text": "religia / pasje", "weight": 1 }
+    ]
+  },
+  "tags": ["Lokacje"],
+  "ownerId": "system",
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "isVisible": true,
+  "createdAt": "2026-04-15T23:27:00.000000Z"
+}

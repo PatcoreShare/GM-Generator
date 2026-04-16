@@ -1,0 +1,114 @@
+{
+  "id": "osada",
+  "name": "Osada",
+  "type": "table",
+  "description": "Generator osady z podziałem na opis, wielkość, populację, język i dziwactwa.",
+  "subType": "complex",
+  "options": [],
+  "fields": [
+    { "label": "Opis", "source": "osada_opis" },
+    { "label": "Rodzaj / wielkość", "source": "osada_rodzaj" },
+    { "label": "Liczba mieszkańców", "source": "osada_mieszkancy" },
+    { "label": "Zdarzenie miejskie / dzień", "source": "osada_zdarzenie" },
+    { "label": "Obecność innych ras", "source": "osada_rasy" },
+    { "label": "Szansa na nauczyciela", "source": "osada_nauczyciel" },
+    { "label": "Pożądane zaopatrzenie / usługa", "source": "osada_zapotrzebowanie" },
+    { "label": "Język", "source": "osada_jezyk" },
+    { "label": "Dziwactwo k6", "source": "osada_dziwactwo_k6" },
+    { "label": "Dziwactwo k12", "source": "osada_dziwactwo_k12" }
+  ],
+  "multiTables": {
+    "osada_opis": [
+      { "id": "osada_opis_1", "text": "Obskurna", "weight": 1 },
+      { "id": "osada_opis_2", "text": "Spustoszona", "weight": 1 },
+      { "id": "osada_opis_3", "text": "Biedna", "weight": 1 },
+      { "id": "osada_opis_4", "text": "Spokojna", "weight": 1 },
+      { "id": "osada_opis_5", "text": "Dziwna", "weight": 1 },
+      { "id": "osada_opis_6", "text": "Bogata", "weight": 1 }
+    ],
+    "osada_rodzaj": [
+      { "id": "osada_rodzaj_1", "text": "Obozowisko", "weight": 1 },
+      { "id": "osada_rodzaj_2", "text": "1 chałupa", "weight": 1 },
+      { "id": "osada_rodzaj_3", "text": "Farma", "weight": 1 },
+      { "id": "osada_rodzaj_4", "text": "k6 gospodarstw", "weight": 1 },
+      { "id": "osada_rodzaj_5", "text": "Wioska", "weight": 1 },
+      { "id": "osada_rodzaj_6", "text": "Ogrodzona wioska", "weight": 1 }
+    ],
+    "osada_mieszkancy": [
+      { "id": "osada_mieszkancy_1", "text": "k20", "weight": 1 },
+      { "id": "osada_mieszkancy_2", "text": "k12", "weight": 1 },
+      { "id": "osada_mieszkancy_3", "text": "2k10", "weight": 1 },
+      { "id": "osada_mieszkancy_4", "text": "6k12", "weight": 1 },
+      { "id": "osada_mieszkancy_5", "text": "10k20", "weight": 1 },
+      { "id": "osada_mieszkancy_6", "text": "20k20", "weight": 1 }
+    ],
+    "osada_zdarzenie": [
+      { "id": "osada_zdarzenie_1", "text": "-", "weight": 1 },
+      { "id": "osada_zdarzenie_2", "text": "-", "weight": 1 },
+      { "id": "osada_zdarzenie_3", "text": "-", "weight": 1 },
+      { "id": "osada_zdarzenie_4", "text": "-", "weight": 1 },
+      { "id": "osada_zdarzenie_5", "text": "50%", "weight": 1 },
+      { "id": "osada_zdarzenie_6", "text": "50%", "weight": 1 }
+    ],
+    "osada_rasy": [
+      { "id": "osada_rasy_1", "text": "-", "weight": 1 },
+      { "id": "osada_rasy_2", "text": "-", "weight": 1 },
+      { "id": "osada_rasy_3", "text": "25%", "weight": 1 },
+      { "id": "osada_rasy_4", "text": "33%", "weight": 1 },
+      { "id": "osada_rasy_5", "text": "50%", "weight": 1 },
+      { "id": "osada_rasy_6", "text": "k3-1", "weight": 1 }
+    ],
+    "osada_nauczyciel": [
+      { "id": "osada_nauczyciel_1", "text": "10%", "weight": 1 },
+      { "id": "osada_nauczyciel_2", "text": "5%", "weight": 1 },
+      { "id": "osada_nauczyciel_3", "text": "5%", "weight": 1 },
+      { "id": "osada_nauczyciel_4", "text": "15%", "weight": 1 },
+      { "id": "osada_nauczyciel_5", "text": "20%", "weight": 1 },
+      { "id": "osada_nauczyciel_6", "text": "25%", "weight": 1 }
+    ],
+    "osada_zapotrzebowanie": [
+      { "id": "osada_zapotrzebowanie_1", "text": "10%", "weight": 1 },
+      { "id": "osada_zapotrzebowanie_2", "text": "20%", "weight": 1 },
+      { "id": "osada_zapotrzebowanie_3", "text": "30%", "weight": 1 },
+      { "id": "osada_zapotrzebowanie_4", "text": "40%", "weight": 1 },
+      { "id": "osada_zapotrzebowanie_5", "text": "50%", "weight": 1 },
+      { "id": "osada_zapotrzebowanie_6", "text": "55%", "weight": 1 }
+    ],
+    "osada_jezyk": [
+      { "id": "osada_jezyk_1", "text": "niezrozumiały / własny", "weight": 1 },
+      { "id": "osada_jezyk_2", "text": "starożytny lub therański", "weight": 1 },
+      { "id": "osada_jezyk_3", "text": "dominującej rasy", "weight": 1 },
+      { "id": "osada_jezyk_4", "text": "dialekt throalskiego", "weight": 1 },
+      { "id": "osada_jezyk_5", "text": "literacki throalski", "weight": 1 },
+      { "id": "osada_jezyk_6", "text": "rzuć 2x", "weight": 1 }
+    ],
+    "osada_dziwactwo_k6": [
+      { "id": "osada_dziwactwo_k6_1", "text": "zanik", "weight": 1 },
+      { "id": "osada_dziwactwo_k6_2", "text": "degeneracja", "weight": 1 },
+      { "id": "osada_dziwactwo_k6_3", "text": "rozluźnienie / chaos", "weight": 1 },
+      { "id": "osada_dziwactwo_k6_4", "text": "dziwne", "weight": 1 },
+      { "id": "osada_dziwactwo_k6_5", "text": "eksponowane", "weight": 1 },
+      { "id": "osada_dziwactwo_k6_6", "text": "cześć / fetyszyzm", "weight": 1 }
+    ],
+    "osada_dziwactwo_k12": [
+      { "id": "osada_dziwactwo_k12_1", "text": "podstawowe umiej.", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_2", "text": "wiedza ogólna", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_3", "text": "kultura wyższa", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_4", "text": "zwyczaje / cechy osob.", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_5", "text": "ciało / cechy fizyczne", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_6", "text": "ubiór", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_7", "text": "seks", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_8", "text": "więzi rodzinne", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_9", "text": "struktura społeczna", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_10", "text": "władza", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_11", "text": "sekta", "weight": 1 },
+      { "id": "osada_dziwactwo_k12_12", "text": "religia / pasje", "weight": 1 }
+    ]
+  },
+  "tags": ["Lokacje"],
+  "ownerId": "system",
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "isVisible": true,
+  "createdAt": "2026-04-15T23:27:00.000000Z"
+}

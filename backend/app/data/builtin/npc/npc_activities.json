@@ -1,0 +1,75 @@
+{
+  "id": "dzialania_npc_stary_swiat",
+  "name": "Działania NPC-ów",
+  "description": "Generator warhammerowych działań NPC lub frakcji. Losuje typ ruchu, motyw, koszt uboczny i widoczną oznakę zmiany sytuacji.",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Ruch NPC-ów", "source": "ruch_npc" },
+    { "label": "Motyw", "source": "motyw_npc" },
+    { "label": "Koszt lub skutek uboczny", "source": "koszt_npc" },
+    { "label": "Widoczna oznaka", "source": "oznaka_npc" }
+  ],
+  "multiTables": {
+    "ruch_npc": [
+      { "text": "NPC popełniają katastrofalny błąd, który niemal natychmiast obraca się przeciw nim", "weight": 1 },
+      { "text": "NPC wykonują poważny błąd taktyczny lub polityczny i wyraźnie pogarszają własne położenie", "weight": 2 },
+      { "text": "NPC działają pochopnie i niekorzystnie, kierując się dumą, gniewem albo presją chwili", "weight": 3 },
+      { "text": "NPC nie podejmują nowych działań i uparcie trzymają się dotychczasowego planu", "weight": 5 },
+      { "text": "NPC wycofują się na pozycje obronne, zachowując siły, ale oddając inicjatywę", "weight": 4 },
+      { "text": "NPC wykonują pragmatyczny ruch zabezpieczający, na przykład ukrywają zasoby, przekupują urzędników albo przerzucają ludzi", "weight": 4 },
+      { "text": "NPC wykonują korzystny dla siebie ruch; ich ludzie są na miejscu, a plan zaczyna działać", "weight": 4 },
+      { "text": "NPC wywierają skalkulowaną presję przez aresztowania, szantaż, pokaz siły albo publiczne oskarżenia", "weight": 3 },
+      { "text": "NPC wykonują sprytne posunięcie i zyskują lokalną przewagę nad przeciwnikami", "weight": 2 },
+      { "text": "NPC wykonują bezwzględny, lecz skuteczny manewr, osiągając cel kosztem niewinnych", "weight": 2 },
+      { "text": "NPC wykazują się niepokojącą przenikliwością, jakby ktoś zdradzał im cudze sekrety albo prowadził ich omen", "weight": 1 },
+      { "text": "NPC wykonują błyskotliwe posunięcie w pełni zgodne z realiami świata i niemal idealnie wykorzystują okazję", "weight": 1 }
+    ],
+    "motyw_npc": [
+      { "text": "Strach przed ujawnieniem winy, herezji albo kompromitujących powiązań", "weight": 4 },
+      { "text": "Chciwość i chęć szybkiego zysku", "weight": 4 },
+      { "text": "Poczucie obowiązku wobec zwierzchnika, rodu, świątyni albo gildii", "weight": 3 },
+      { "text": "Zemsta za dawną zniewagę, stratę albo śmierć bliskiej osoby", "weight": 3 },
+      { "text": "Bieda, głód albo rozpaczliwe pragnienie przetrwania", "weight": 3 },
+      { "text": "Fanatyczna wiara, gorliwość religijna albo strach przed gniewem bogów", "weight": 2 },
+      { "text": "Chęć ochrony rodziny, kochanka, dziedzica albo innej ważnej osoby", "weight": 3 },
+      { "text": "Ambicja, żądza wpływów albo walka o stanowisko", "weight": 3 },
+      { "text": "Panika wywołana plotkami o zarazie, wojnie, mutacjach albo głodzie", "weight": 2 },
+      { "text": "Rozkaz wydany przez przełożonego, patrona, kapłana albo tajemne bractwo", "weight": 3 },
+      { "text": "Skażenie Chaosem, szept kultu albo powolna moralna zgnilizna", "weight": 1 },
+      { "text": "Proroctwo, omen, sen albo złowroga przepowiednia", "weight": 1 }
+    ],
+    "koszt_npc": [
+      { "text": "Najbardziej cierpią zwykli mieszkańcy, biedota albo przypadkowi przechodnie", "weight": 3 },
+      { "text": "Reputacja ważnej osoby, instytucji albo całej dzielnicy zostaje splamiona", "weight": 3 },
+      { "text": "Przepadają pieniądze, zapasy, towary albo inne cenne zasoby", "weight": 3 },
+      { "text": "Marnuje się czas, a przeciwnik zyskuje bezcenną przewagę", "weight": 3 },
+      { "text": "Neutralna frakcja, cech albo świątynia zostaje zrażona do jednej ze stron", "weight": 2 },
+      { "text": "Na ulicach leje się krew, a przemoc szybko wymyka się spod kontroli", "weight": 2 },
+      { "text": "Ktoś znika bez śladu; porwano go, ukryto albo uciszono", "weight": 2 },
+      { "text": "Sprawą zaczynają interesować się straż miejska, poborcy albo inny urząd", "weight": 2 },
+      { "text": "Rozchodzą się oskarżenia o herezję, konszachty z Chaosem albo nieczyste praktyki", "weight": 1 },
+      { "text": "Pogarsza się choroba, skażenie albo stan sanitarny okolicy", "weight": 1 },
+      { "text": "Na jaw wychodzi sekret, który miał nigdy nie ujrzeć światła dziennego", "weight": 2 },
+      { "text": "Rosną długi, zależności i możliwości szantażu", "weight": 2 }
+    ],
+    "oznaka_npc": [
+      { "text": "Na ulicach pojawia się więcej patroli, rewizji i pytań zadawanych przez ludzi przy władzy", "weight": 3 },
+      { "text": "W karczmach i na targach krążą coraz bardziej złośliwe albo przestraszone plotki", "weight": 3 },
+      { "text": "Giną posłańcy, wozy z towarem albo pojedyncze osoby mające pecha znaleźć się we właściwym miejscu", "weight": 2 },
+      { "text": "Pojawiają się spalone dokumenty, zerwane pieczęcie, zniszczone księgi albo ślady pośpiesznego tuszowania sprawy", "weight": 2 },
+      { "text": "Tłumy zbierają się wokół kazania, procesu, egzekucji albo publicznego oskarżenia", "weight": 2 },
+      { "text": "W nocy biją alarmowe dzwony, a władze mówią o godzinie policyjnej albo zagrożeniu", "weight": 2 },
+      { "text": "Zamknięto magazyn, świątynię, posterunek albo inną ważną dla miasta lokalizację", "weight": 2 },
+      { "text": "Na murach pojawiają się obwieszczenia, listy gończe, groźby albo paszkwile", "weight": 2 },
+      { "text": "Przybywa świeżych grobów, wozów z ciałami albo ludzi od przewożenia zmarłych", "weight": 1 },
+      { "text": "W zaułkach i piwnicach pojawiają się dziwne znaki, sadza, świece albo ślady rytuałów", "weight": 1 },
+      { "text": "Szczury robią się zuchwałe, a z kanałów dobiegają odgłosy, których nikt nie chce tłumaczyć", "weight": 1 },
+      { "text": "Drobny urzędnik, strażnik albo kupiec nagle żyje ponad stan i ostentacyjnie to pokazuje", "weight": 1 }
+    ]
+  },
+  "tags": ["NPC"],
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "createdAt": "2026-04-15T23:14:00"
+}

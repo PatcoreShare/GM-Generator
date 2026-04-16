@@ -104,7 +104,7 @@
     { "id": "treasure_097", "text": "Pęk czarnych piór kruka", "weight": 1 },
     { "id": "treasure_098", "text": "Skórzana opaska na oko", "weight": 1 }
   ],
-  "tags": ["Wbudowane", "Łupy", "Skarby"],
+  "tags": ["Łupy"],
   "ownerName": "System",
   "isBuiltIn": true,
   "createdAt": "2026-04-10T00:00:00"

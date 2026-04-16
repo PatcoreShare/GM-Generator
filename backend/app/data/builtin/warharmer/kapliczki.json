@@ -1,0 +1,49 @@
+{
+  "id": "aspekty_kapliczek_warhammer",
+  "name": "Losowe Aspekty Kapliczek",
+  "description": "Generator unikalnych cech i aspektów przydrożnych kapliczek, świątyń i ołtarzy w Starym Świecie. Zawiera klasyczne motywy oraz rzadkie, mistyczne i niepokojące warianty.",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Aspekt kapliczki", "source": "aspekt_kapliczki" }
+  ],
+  "multiTables": {
+    "aspekt_kapliczki": [
+      { "text": "Mapa. W kapliczce znajduje się mapa wymalowana na ścianie lub na fragmencie przybitego do niej płótna. W gestii MG leży określenie, dokąd (o ile w ogóle) prowadzi.", "weight": 1 },
+      { "text": "Bogato ornamentowana. Ołtarz udekorowano wykonanymi ze złota liśćmi i inkrustowano drogocennymi kamieniami (wartymi 4k10 zk), które jak dotąd nie padły łupem złodziei. Strażnik – kapłan lub dozorca, magiczny konstrukt lub wymyślna pułapka – skutecznie odstrasza potencjalnych świętokradców.", "weight": 1 },
+      { "text": "Uczęszczana. Kapliczka jest chętnie odwiedzana przez lokalną ludność. O dowolnej porze dnia znajduje się w niej 1k10 osób, a w nocy o połowę mniej.", "weight": 1 },
+      { "text": "Niszczejąca. Pozbawiona opieki i wystawiona na działanie żywiołów kapliczka popadła w ruinę. Niemniej świeże ofiary świadczą o tym, że nie została całkowicie zapomniana. W kapliczce nie ma nic, co posiadałoby wartość materialną.", "weight": 1 },
+      { "text": "Starożytna. Kapliczkę wzniesiono wiele wieków wcześniej z materiałów, które opierają się niszczycielskiemu wpływowi czasu. Możliwe, że to przedstawiciele innych ras lub któregoś ze starożytnych ludzkich plemion wznieśli kapliczkę w sobie tylko znanym celu.", "weight": 1 },
+      { "text": "Splądrowana. Kapliczka padła niedawno łupem złodziei, w jej wnętrzu nie ma niczego wartościowego.", "weight": 1 },
+      { "text": "Zwłoki. Obok kapliczki leżą zwłoki. MG powinien określić zarówno przyczynę śmierci, jak i to, czy jest to świeży trup czy rozkładająca się i gnijąca padlina.", "weight": 1 },
+      { "text": "Zagadka lub szyfr. We wnętrzu kapliczki znajduje się osobliwa zagadka lub dziwna inskrypcja wyryta na ścianach. Jak dotąd nikomu nie udało się jej rozszyfrować.", "weight": 1 },
+      { "text": "Nowa. Świątynia została niedawno wzniesiona. Farba użyta do wykonania zdobiących ją malowideł ledwie wyschła, statuetki nie zdążyły pokryć się patyną, a na ołtarzu leżą świeże ofiary.", "weight": 1 },
+      { "text": "Dar dla podróżnych. Kapłani lub żarliwi wyznawcy bóstwa, któremu poświęcona jest kapliczka, pozostawili w niej jadło, odzienie, obuwie lub broń, dołączając nakreśloną pośpiesznie krótką wiadomość zachęcającą tych w potrzebie do skorzystania z owych darów.", "weight": 1 },
+      { "text": "Ponura. Kapliczka jest prosta, brak w niej malowideł i posągów bóstw, złożone ofiary są zaś wyjątkowo skromne.", "weight": 1 },
+      { "text": "Doglądana. Kapłan lub akolita uznał opiekę nad kapliczką za swój obowiązek; dogląda jej każdego dnia, samemu mieszkając w maleńkim domu lub wzniesionej obok kapliczki chacie.", "weight": 1 },
+      { "text": "Ostentacyjna. Świątynia wypełniona jest licznymi, lecz tandetnymi posągami, malowidłami i innymi dewocjonaliami.", "weight": 1 },
+      { "text": "Zapomniana. Kapliczka od wielu lat nie była odwiedzana przez wiernych, jest zarośnięta chwastami lub niemal popadła w ruinę, poddając się niszczycielskiemu działaniu wiatru i deszczu.", "weight": 1 },
+      { "text": "Solidna. Kapliczkę wykonano z wprawą, z kamienia lub solidnego drewna. Niemal pewnym jest, że danym jej będzie dotrwać dni ostatnich. Ewentualne braki w wystroju nadrabia solidnością.", "weight": 1 },
+      { "text": "Skrytka. W kapliczce znajduje się tajemna skrytka, w której być może ukryto skarb, relikwię lub jakiś inny przedmiot. Bardzo Trudny (-30) test spostrzegawczości pozwoli odnaleźć skrytkę (która może być zabezpieczona pułapką).", "weight": 1 },
+      { "text": "Sprofanowana. Kapliczka padła łupem bandytów lub, co gorsza, wyznawców Niszczycielskich Potęg. Próżno w niej szukać czegokolwiek poza wyrytymi na ścianach wulgarnymi słowami i demonicznymi malunkami oraz odchodami na podłodze.", "weight": 1 },
+      { "text": "Wspaniała. Kapliczka jest dziełem prawdziwego artysty, łącząc w swej formie doskonałe rzemiosło i miły oku projekt.", "weight": 1 },
+      { "text": "Szczodre ofiary. Ktoś pozostawił w kapliczce hojną ofiarę złożoną z wartych 1k100 zk monet, klejnotów lub innych kosztowności. Ten, kto się na nią połakomi, ryzykuje nie tylko ściągnięcie na siebie gniewu bogów, ale i lokalnych wyznawców bóstwa, dla którego wzniesiono kapliczkę.", "weight": 1 },
+      { "text": "Osobliwa pogoda. Pogoda w promieniu kilometra od kapliczki jest dziwna i nieprzystająca do pory roku; na przykład w środku lata wieje zimny wiatr lub prószy śnieg.", "weight": 5 },
+      { "text": "Przeklęta. Kapliczka została przeklęta przez wiedźmę, czarownika, bluźnierczy czyn, którego dopuścił się wyznawca tego bóstwa, lub przez którąś z Niszczycielskich Potęg. Istnieje 10% szans, że każda osoba, która się tu pomodli, ściągnie na siebie potworną klątwę. Określenie dokładnych jej efektów leży w gestii MG.", "weight": 10 },
+      { "text": "Błogosławiona. Kapliczka jest wyjątkowo miła bóstwu, któremu jest poświęcona. Istnieje 10% szans, że gorliwy wyznawca proszący w niej o błogosławieństwo zostanie wysłuchany i doświadczy boskiej łaski. Jedna osoba może zanieść tylko jedną prośbę do bóstwa.", "weight": 10 },
+      { "text": "Herezja! W kapliczce ukryto posążek i inne bluźniercze przedmioty poświęcone Niszczycielskim Potęgom wykorzystywane podczas sekretnych obrzędów. Trudny (-20) test spostrzegawczości pozwoli na odkrycie schowka z plugawymi relikwiami.", "weight": 10 },
+      { "text": "Nienaturalna Cisza. Wokół kapliczki tłumione są wszelkie dźwięki. Ptaki nie śpiewają, wiatr przestaje szumieć, a nawet najgłośniejsze okrzyki stają się ledwie słyszalnymi szeptami. Wywołuje to głęboki niepokój.", "weight": 10 },
+      { "text": "Krwawe Łzy. Z oczu wyrzeźbionego na ołtarzu bóstwa nieustannie sączy się świeża krew lub gęsta, czerwona żywica. Jeśli ktoś ją zetrze, płyn pojawia się na nowo o następnym świcie.", "weight": 10 },
+      { "text": "Echa Przeszłości. W bezpośrednim pobliżu kapliczki można usłyszeć ciche, nakładające się na siebie głosy odprawiające dawne, zapomniane modlitwy osób, które zmarły wieki temu.", "weight": 10 },
+      { "text": "Zatopiona w Czasie. Czas wewnątrz małego obrębu kapliczki płynie zupełnie inaczej. Spędzenie tu godziny na modlitwie może oznaczać cały dzień w prawdziwym świecie, lub odwrotnie.", "weight": 10 },
+      { "text": "Strażnik z Zaświatów. W nocy kapliczki pilnuje milczące widmo dawnego paladyna lub kapłana. Pozwala zbliżyć się tylko tym, którzy szczerze wyznają dane bóstwo, resztę odganiając chłodem grobu.", "weight": 10 },
+      { "text": "Ożywiona Flora. Roślinność pnąca się po kapliczce zdaje się reagować na myśli i nastroje odwiedzających. Cierniste pnącza odsuwają się przed pobożnymi, lecz oplotą dłonie złodziei.", "weight": 10 },
+      { "text": "Krystaliczne Źródełko. Pod ołtarzem bije małe źródełko. Woda w nim leczy drobne rany, ale wypicie jej wiąże się z krótkimi, bardzo intensywnymi i proroczymi wizjami zsyłanymi przez bóstwo.", "weight": 10 },
+      { "text": "Iluzoryczne Bezpieczeństwo. Kapliczka magicznie ukrywa tych, którzy w niej odpoczywają i nie mają złych zamiarów. Z zewnątrz, z odległości kilkunastu metrów, obozowisko wygląda jak sterta starych kamieni lub gęsta mgła.", "weight": 10 }
+    ]
+  },
+  "tags": ["Lokacje"],
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "createdAt": "2026-04-16T19:38:00"
+}

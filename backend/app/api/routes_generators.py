@@ -11,7 +11,6 @@ from app.services.storage import generator_to_response, upsert_generator
 
 router = APIRouter()
 
-
 @router.get("/generators")
 def get_generators(
     userId: str | None = Query(default=None),
@@ -32,19 +31,17 @@ def get_generators(
         query = query.filter(
             or_(
                 GeneratorDB.owner_id == owner_uuid,
-                GeneratorDB.is_built_in.is_(True)
+                GeneratorDB.owner_id.is_(None)
             )
         )
 
     items = query.order_by(GeneratorDB.created_at.desc()).all()
     return [generator_to_response(item) for item in items]
 
-
 @router.post("/generators")
 def save_generator(payload: GeneratorPayload, db: Session = Depends(get_db)):
     result = upsert_generator(db, payload.model_dump())
     return result
-
 
 @router.delete("/generators/{generator_id}")
 def delete_generator(generator_id: str, db: Session = Depends(get_db)):

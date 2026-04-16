@@ -1,0 +1,65 @@
+{
+  "id": "wydarzenia_stary_swiat",
+  "name": "Miasto",
+  "type": "table",
+  "description": "Zbiorczy generator miejskich wydarzeń w Starym Świecie. Losuje miejsce, widoczne zdarzenie, zaangażowane strony i ukryty problem.",
+  "subType": "complex",
+  "fields": [
+    {
+      "label": "Miejsce",
+      "source": "field_1"
+    },
+    {
+      "label": "Zdarzenie",
+      "source": "field_2"
+    },
+    {
+      "label": "Zaangażowane strony",
+      "source": "field_3"
+    },
+    {
+      "label": "Ukryty problem",
+      "source": "field_4"
+    }
+  ],
+  "multiTables": {
+    "field_1": [
+      {
+        "id": "4b5d6e71-5f64-4d2d-8b1a-1f3d8f7a1001",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "city_place"
+      }
+    ],
+    "field_2": [
+      {
+        "id": "7c9e1204-9a31-4ec8-9c0d-2e6b4fd22002",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "city_events"
+      }
+    ],
+    "field_3": [
+      {
+        "id": "91af3d55-2cb1-4b81-bf5d-3a1c7ce33003",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "city_persons"
+      }
+    ],
+    "field_4": [
+      {
+        "id": "d2e48a96-8d73-4c90-a8ec-4b9f0aa44004",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "city_problems"
+      }
+    ]
+  },
+  "tags": ["Wydarzenia"],
+  "ownerId": "Wydarzenia",
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "isVisible": true,
+  "createdAt": "2026-04-15T22:45:00.000000Z"
+}

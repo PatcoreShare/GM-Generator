@@ -1,0 +1,81 @@
+{
+  "id": "miasta",
+  "name": "Miasta",
+  "type": "table",
+  "description": "Generator miasta z podziałem na stan, wielkość, ludność, umocnienia, charakter, lokalizację i frakcje.",
+  "subType": "complex",
+  "options": [],
+  "fields": [
+    { "label": "Stan", "source": "miasta_stan" },
+    { "label": "Ranga / wielkość", "source": "miasta_ranga" },
+    { "label": "Liczba mieszkańców", "source": "miasta_mieszkancy" },
+    { "label": "Umocnienia", "source": "miasta_umocnienia" },
+    { "label": "Charakter", "source": "miasta_charakter" },
+    { "label": "Lokalizacja", "source": "miasta_lokalizacja" },
+    { "label": "Frakcje", "source": "miasta_frakcje" }
+  ],
+  "multiTables": {
+    "miasta_stan": [
+      { "id": "miasta_stan_1", "text": "Upadłe", "weight": 1 },
+      { "id": "miasta_stan_2", "text": "Wyniszczone", "weight": 1 },
+      { "id": "miasta_stan_3", "text": "Obskurne", "weight": 1 },
+      { "id": "miasta_stan_4", "text": "Spokojne", "weight": 1 },
+      { "id": "miasta_stan_5", "text": "Prężne", "weight": 1 },
+      { "id": "miasta_stan_6", "text": "Bogate", "weight": 1 }
+    ],
+    "miasta_ranga": [
+      { "id": "miasta_ranga_1", "text": "Obóz", "weight": 1 },
+      { "id": "miasta_ranga_2", "text": "Plac targowy", "weight": 1 },
+      { "id": "miasta_ranga_3", "text": "Małe", "weight": 1 },
+      { "id": "miasta_ranga_4", "text": "Średnie", "weight": 1 },
+      { "id": "miasta_ranga_5", "text": "Duże", "weight": 1 },
+      { "id": "miasta_ranga_6", "text": "Stolica", "weight": 1 }
+    ],
+    "miasta_mieszkancy": [
+      { "id": "miasta_mieszkancy_1", "text": "k200 + 20", "weight": 1 },
+      { "id": "miasta_mieszkancy_2", "text": "k100 + 20", "weight": 1 },
+      { "id": "miasta_mieszkancy_3", "text": "k100 + 50", "weight": 1 },
+      { "id": "miasta_mieszkancy_4", "text": "k1000 + 200", "weight": 1 },
+      { "id": "miasta_mieszkancy_5", "text": "k6 x k1000 + 500", "weight": 1 },
+      { "id": "miasta_mieszkancy_6", "text": "k10 x k1000 + 200", "weight": 1 }
+    ],
+    "miasta_umocnienia": [
+      { "id": "miasta_umocnienia_1", "text": "brak", "weight": 1 },
+      { "id": "miasta_umocnienia_2", "text": "rzeźba terenu", "weight": 1 },
+      { "id": "miasta_umocnienia_3", "text": "prowizorka", "weight": 1 },
+      { "id": "miasta_umocnienia_4", "text": "rów i płot", "weight": 1 },
+      { "id": "miasta_umocnienia_5", "text": "drewniano-ziemne", "weight": 1 },
+      { "id": "miasta_umocnienia_6", "text": "kamienne", "weight": 1 }
+    ],
+    "miasta_charakter": [
+      { "id": "miasta_charakter_1", "text": "militarny", "weight": 1 },
+      { "id": "miasta_charakter_2", "text": "ośrodek handlu", "weight": 1 },
+      { "id": "miasta_charakter_3", "text": "sanktuarium", "weight": 1 },
+      { "id": "miasta_charakter_4", "text": "ośrodek nauki", "weight": 1 },
+      { "id": "miasta_charakter_5", "text": "ośrodek administracyjny", "weight": 1 },
+      { "id": "miasta_charakter_6", "text": "ośrodek rzemieślniczy", "weight": 1 }
+    ],
+    "miasta_lokalizacja": [
+      { "id": "miasta_lokalizacja_1", "text": "na ruinach dawnego miasta", "weight": 1 },
+      { "id": "miasta_lokalizacja_2", "text": "na skrzyżowaniu szlaków", "weight": 1 },
+      { "id": "miasta_lokalizacja_3", "text": "centrum osadnictwa", "weight": 1 },
+      { "id": "miasta_lokalizacja_4", "text": "koło kopalni", "weight": 1 },
+      { "id": "miasta_lokalizacja_5", "text": "port / przeprawa", "weight": 1 },
+      { "id": "miasta_lokalizacja_6", "text": "obronne miejsce", "weight": 1 }
+    ],
+    "miasta_frakcje": [
+      { "id": "miasta_frakcje_1", "text": "brak struktur", "weight": 1 },
+      { "id": "miasta_frakcje_2", "text": "dominująca na obszarze", "weight": 1 },
+      { "id": "miasta_frakcje_3", "text": "dominująca na obszarze", "weight": 1 },
+      { "id": "miasta_frakcje_4", "text": "wylosuj 1", "weight": 1 },
+      { "id": "miasta_frakcje_5", "text": "wylosuj 2", "weight": 1 },
+      { "id": "miasta_frakcje_6", "text": "dominująca + wylosuj 2", "weight": 1 }
+    ]
+  },
+  "tags": ["Lokacje"],
+  "ownerId": "system",
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "isVisible": true,
+  "createdAt": "2026-04-15T23:27:00.000000Z"
+}

@@ -252,7 +252,7 @@
       { "text": "Sprowadzony z Arabyy przez kupca, który potem zaginął", "weight": 1 }
     ]
   },
-  "tags": ["Wbudowane", "Łupy", "Skarby"],
+  "tags": [ "Łupy"],
   "ownerName": "System",
   "isBuiltIn": true,
   "createdAt": "2026-04-10T00:00:00"

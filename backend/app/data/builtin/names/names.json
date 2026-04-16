@@ -2,9 +2,33 @@
   "id": "imiona",
   "name": "Imiona",
   "type": "table",
-  "description": "",
+  "description": "Główny generator imion i nazw własnych z podziałem na rasy oraz regiony w Starym Świecie.",
   "subType": "complex",
   "fields": [
+    {
+      "label": "Ludzkie (Imperium)",
+      "source": "field_ludzkie"
+    },
+    {
+      "label": "Krasnoludzkie",
+      "source": "field_krasnoludzkie"
+    },
+    {
+      "label": "Elfie",
+      "source": "field_elfie"
+    },
+    {
+      "label": "Niziołków",
+      "source": "field_niziolki"
+    },
+    {
+      "label": "Bretonnia",
+      "source": "field_bretonnia"
+    },
+    {
+      "label": "Kislev",
+      "source": "field_kislev"
+    },
     {
       "label": "Albion",
       "source": "field_1"
@@ -12,9 +36,61 @@
     {
       "label": "Tilea",
       "source": "field_2"
+    },
+    {
+      "label": "Norska",
+      "source": "field_3"
     }
   ],
   "multiTables": {
+    "field_ludzkie": [
+      {
+        "id": "link-ludzkie",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "imiona-ludzkie"
+      }
+    ],
+    "field_krasnoludzkie": [
+      {
+        "id": "link-krasnoludzkie",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "imiona-krasnoludzkie"
+      }
+    ],
+    "field_elfie": [
+      {
+        "id": "link-elfie",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "imiona-elfie"
+      }
+    ],
+    "field_niziolki": [
+      {
+        "id": "link-niziolki",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "imiona-niziolki"
+      }
+    ],
+    "field_bretonnia": [
+      {
+        "id": "link-bretonnia",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "imiona-bretonskie"
+      }
+    ],
+    "field_kislev": [
+      {
+        "id": "link-kislev",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "imiona-kislev-gospodarowie"
+      }
+    ],
     "field_1": [
       {
         "id": "4f2fd3b6-3bc8-4400-8722-dda71eb8ead3",
@@ -30,15 +106,20 @@
         "weight": 1,
         "nestedTableId": "imiona-tilea"
       }
+    ],
+    "field_3": [
+      {
+        "id": "c1e4e65c-b7af-4d4a-ac1d-97e2e3faca88",
+        "text": "",
+        "weight": 1,
+        "nestedTableId": "imiona-norska"
+      }
     ]
   },
-  "tags": [
-    "Imiona",
-    "Wbudowane"
-  ],
-  "ownerId": "builtin",
+  "tags": ["Imiona"],
+  "ownerId": "Imiona",
   "ownerName": "System",
   "isBuiltIn": true,
   "isVisible": true,
-  "createdAt": "2026-04-10T10:06:54.641134Z"
+  "createdAt": "2026-04-16T20:06:00.000Z"
 }

@@ -1,0 +1,48 @@
+{
+  "id": "aspekty_swiatyn_warhammer",
+  "name": "Losowe Aspekty Świątyń",
+  "description": "Generator unikalnych cech, sytuacji i atmosfery w świątyniach. Tabela 7-2 wzbogacona o rzadkie i mroczne motywy (im wyższa waga, tym rzadszy wynik).",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Aspekt świątyni", "source": "aspekt_swiatyni" }
+  ],
+  "multiTables": {
+    "aspekt_swiatyni": [
+      { "text": "Zamożna. Kongregacja doglądająca świątyni dzięki hojnym datkom jest w stanie właściwie zadbać o budowlę. Wnętrze wypełniają bezcenne ikony, pozłacane posągi i religijne malowidła. Mały oddział stacjonujących rycerzy świątynnych dba o bezpieczeństwo.", "weight": 1 },
+      { "text": "Paranoja. Odizolowani od świata kapłani są nieufni względem obcych, świątynia zaś stała się dla nich samotnią. Zakłócający panujący tu spokój goście nie są mile widziani, a wszystkie testy Ogłady w kontaktach z tutejszymi kapłanami są Trudne (-20).", "weight": 1 },
+      { "text": "Imponująca architektura. Budynek świątyni to prawdziwa perła architektury i częsty cel pielgrzymek dla pragnących nasycić oczy.", "weight": 1 },
+      { "text": "Świątynia wiedzy. Świątynia słynie ze zbiorów, na które składają się uczone księgi i pergaminy; pełni także funkcję miejscowego ośrodka dla złaknionych wiedzy i teologicznych debat.", "weight": 1 },
+      { "text": "W ruinie. Starożytna budowla, której lada moment grozi zawalanie. Obecny stan świątyni może być skutkiem wojny, niszczycielskiego działania czasu lub po prostu niedbałej konstrukcji, czyniąc z niej marne schronienie.", "weight": 1 },
+      { "text": "W odbudowie. Świątynia została zniszczona w trakcie działań wojennych, strawiona przez ogień lub zdewastowana i znajduje się właśnie w odbudowie mającej przywrócić jej dawną świetność. Prace budowlane są niewłaściwie zabezpieczone, ochrona niedostateczna, a wiele ze zwyczajowych posług, które były pełnione w świątyni, jest chwilowo niedostępnych.", "weight": 1 },
+      { "text": "Słynny kapłan. Jeden ze świątynnych kapłanów, żyjący lub dawno zmarły, wsławił się jakimś śmiałym czynem, pracą naukową lub męczeństwem.", "weight": 1 },
+      { "text": "Warownia. Świątynię wzniesiono we wnętrzu opuszczonego fortu, dzięki czemu, choć budowli brak estetycznego sznytu, łatwo o jej obronę. Budynek przywodzi na myśl raczej wojskową fortyfikację niż miejsce kultu.", "weight": 1 },
+      { "text": "W potrzebie. Ciężkie czasy nie ominęły i tej świątyni. Jej działalność charytatywna jest mocno ograniczona, kapłani zaś proszą wszystkich odwiedzających o datki. Istnieje także druga ewentualność: świątyni brakuje odpowiedniego zaplecza i kapłanów i nie jest tym samym w stanie zapewnić zwyczajowych posług.", "weight": 1 },
+      { "text": "Artyzm. Świątynni kapłani tworzą przedmioty w unikatowym stylu i o dużej wartości. Większość dzieł ich rąk jest przynajmniej dobrej jakości, a część nawet najlepszej.", "weight": 1 },
+      { "text": "Szczodra. Świątynia ma wiele do zaoferowania osobom w potrzebie lub też tutejsi kapłani są skorzy do dzielenia się ofiarami. Podróżni mogą oczekiwać kilku darmowych posiłków, dachu nad głową na kilka dni, dobrej rady i błogosławieństwa na drogę.", "weight": 1 },
+      { "text": "Warsztat. Kapłani ciężko pracują, wytwarzając duże ilości konkretnego dobra lub świadcząc szczególne usługi, które można nabyć z upustem 10%-50% (1k10/2) w stosunku do ceny rynkowej.", "weight": 1 },
+      { "text": "Podejrzliwość. Kapłani nie ufają obcym. Wszystkie testy Ogłady przeprowadzane w kontaktach z mieszkańcami świątyni są Wymagające (-10).", "weight": 1 },
+      { "text": "Starożytna. Nie tylko sama świątynia jest wiekowa, ale wzniesiono ją na pochodzących z czasów przed powstaniem Imperium ruinach znacznie starszej budowli. Nie wiadomo, czemu służyła owa starożytna konstrukcja.", "weight": 1 },
+      { "text": "Niesławny kapłan. Jednym z rezydentów świątyni jest kapłan znany z wątpliwej wiary, kontrowersyjnych poglądów lub niezbyt szlachetnej przeszłości.", "weight": 1 },
+      { "text": "Plaga. W świątynnych murach szaleje zaraza. Wszystkich mieszkańców poddano kwarantannie, niemniej ciągle wymagają pożywienia i innej pomocy z zewnątrz.", "weight": 1 },
+      { "text": "Obóz uchodźców. Świątynia jest tymczasowym domem dla sporej grupy uchodźców, zbyt licznej, by zapewnić im długoterminowe wsparcie.", "weight": 1 },
+      { "text": "Relikwia. Świątynia jest domem dla słynnego świętego artefaktu.", "weight": 1 },
+      { "text": "Nienawistna. Kapłani są niechętni lub wrogo nastawieni do przedstawicieli konkretnej rasy, narodowości, wyznania, profesji lub klasy społecznej. Afronty oraz słowne lub fizyczne ataki zostaną wymierzone w każdego nielubianego obcego, który przekroczy próg świątyni.", "weight": 1 },
+      { "text": "Szlak pielgrzymkowy. Świątynia położona jest przy uczęszczanym szlaku i troszczy się o pielgrzymów podczas ich wędrówki.", "weight": 5 },
+      { "text": "Przeklęta. Bogowie opuścili mury tego przybytku. Zarówno wyznawcy bóstwa, jak i miejscowa ludność unikają świątyni, a nielicznym kapłanom, którzy ciągle przy niej trwają, ciężko zadbać o odpowiednie datki, aby utrzymać ją otwartą. Przekleństwo dotknie każdego, kto spędzi noc w świątyni lub się w niej pomodli.", "weight": 10 },
+      { "text": "Błogosławiona. Świątynia cieszy się błogosławieństwem boga, ku którego czci została wzniesiona. Datki są hojne, wytwory kapłanów rozchwytywane. Podczas rzucania zaklęć z Dziedziny patronackiego bóstwa w obrębie murów świątyni dodaje się dodatkową kość przy określaniu uzyskanego poziomu mocy.", "weight": 10 },
+      { "text": "Herezja! Świątynia jest potajemnie domem dla kultu Chaosu! Mroczne symbole są zręcznie wplecione w ornamenty, a nocą odbywają się w niej zakazane rytuały.", "weight": 10 },
+      { "text": "Schizma. Świątynia jest fizycznie przedzielona barykadami. Dwóch arcykapłanów odrzuciło swoje nauki, a ich frakcje toczą wewnątrz murów niemal otwartą wojnę doktrynalną (i często na noże).", "weight": 10 },
+      { "text": "Żywe rzeźby. Złożone ofiary w niewytłumaczalny sposób znikają z ołtarza, a posągi świętych w świątyni powoli, z dnia na dzień, zmieniają swoje ułożenie i wyraz twarzy, wodząc wzrokiem za grzesznikami.", "weight": 10 },
+      { "text": "Świątynia Pokuty. Miejsce to słynie z fanatycznych biczowników i rytuałów samookaleczenia. Podłogi są permanentnie zabrudzone zaschniętą krwią, a powietrze ciężkie od zapachu kadzideł i potu.", "weight": 10 },
+      { "text": "Zapomniane Katakumby. Przypadkowe tąpnięcie ziemi w głównej nawie odsłoniło wejście do głębokich katakumb. Kapłani są przerażeni, bo z głębin dochodzą odgłosy przesuwanego kamienia i stłumione szepty.", "weight": 10 },
+      { "text": "Lustro Duszy. W centrum świątyni znajduje się idealnie gładka, czarna tafla wody (lub polerowanego obsydianu). Każdy, kto w nią spojrzy, zamiast odbicia widzi swój najgorszy, ukryty grzech. Wywołuje to u testujących Punkty Obłędu.", "weight": 10 },
+      { "text": "Sanktuarium Ciszy. Członkowie tego zakonu złożyli śluby milczenia i fizycznie okaleczyli swoje języki. Porozumiewają się wyłącznie gestami, a w całej, ogromnej świątyni panuje dzwoniąca w uszach, nienaturalna, opresyjna cisza.", "weight": 10 },
+      { "text": "Spaczone fundamenty. Pod świątynią znajduje się złoże spaczenia. Kapłani, wierząc, że doznają boskich wizji, powoli popadają w szaleństwo i ulegają mutacjom, skrzętnie ukrywając je pod ciężkimi szatami.", "weight": 10 }
+    ]
+  },
+  "tags": ["Lokacje"],
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "createdAt": "2026-04-16T19:42:00"
+}

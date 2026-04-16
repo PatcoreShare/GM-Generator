@@ -1,0 +1,82 @@
+{
+  "id": "imiona-kislev-gospodarowie",
+  "name": "Pełne Imiona Gospodarów (Kislev)",
+  "description": "Generator pełnych imion kislevskich Gospodarów. Wylosuj raz, aby otrzymać kombinację: Imię + Matronimik (od imienia matki) + Nazwisko, przygotowane osobno dla mężczyzny i kobiety.",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Imię Męskie", "source": "kislev_imie_m" },
+    { "label": "Matronimik (-sin)", "source": "kislev_mat_m" },
+    { "label": "Imię Żeńskie", "source": "kislev_imie_k" },
+    { "label": "Matronimik (-doczia)", "source": "kislev_mat_k" },
+    { "label": "Nazwisko", "source": "kislev_nazwisko" }
+  ],
+  "multiTables": {
+    "kislev_imie_m": [
+      { "text": "Aleksandr", "weight": 1 }, { "text": "Aleksiej", "weight": 1 }, { "text": "Anastas", "weight": 1 }, { "text": "Antał", "weight": 1 }, { "text": "Biełedni", "weight": 1 },
+      { "text": "Boroda", "weight": 1 }, { "text": "Borodin", "weight": 1 }, { "text": "Borys", "weight": 1 }, { "text": "Cziagin", "weight": 1 }, { "text": "Dażia", "weight": 1 },
+      { "text": "Dmirow", "weight": 1 }, { "text": "Dołko", "weight": 1 }, { "text": "Dymitrij", "weight": 1 }, { "text": "Fiodor", "weight": 1 }, { "text": "Gaspar", "weight": 1 },
+      { "text": "Igor", "weight": 1 }, { "text": "Iwan", "weight": 1 }, { "text": "Jarogni", "weight": 1 }, { "text": "Jewgienij", "weight": 1 }, { "text": "Jurij", "weight": 1 },
+      { "text": "Kazimir", "weight": 1 }, { "text": "Kuba", "weight": 1 }, { "text": "Kwietłaj", "weight": 1 }, { "text": "Łukian", "weight": 1 }, { "text": "Madorin", "weight": 1 },
+      { "text": "Makary", "weight": 1 }, { "text": "Maksym", "weight": 1 }, { "text": "Michail", "weight": 1 }, { "text": "Mitri", "weight": 1 }, { "text": "Nikołaj", "weight": 1 },
+      { "text": "Nowgo", "weight": 1 }, { "text": "Oleg", "weight": 1 }, { "text": "Paweł", "weight": 1 }, { "text": "Piotr", "weight": 1 }, { "text": "Ptor", "weight": 1 },
+      { "text": "Radij", "weight": 1 }, { "text": "Sewim", "weight": 1 }, { "text": "Sorka", "weight": 1 }, { "text": "Stiepan", "weight": 1 }, { "text": "Sylwester", "weight": 1 },
+      { "text": "Tordimir", "weight": 1 }, { "text": "Ursuni", "weight": 1 }, { "text": "Waja", "weight": 1 }, { "text": "Walentyn", "weight": 1 }, { "text": "Walery", "weight": 1 },
+      { "text": "Wasilij", "weight": 1 }, { "text": "Wiktor", "weight": 1 }, { "text": "Witalij", "weight": 1 }, { "text": "Władimir", "weight": 1 }, { "text": "Własi", "weight": 1 }
+    ],
+    "kislev_imie_k": [
+      { "text": "Aleksandra", "weight": 1 }, { "text": "Anastazja", "weight": 1 }, { "text": "Bela", "weight": 1 }, { "text": "Biełednia", "weight": 1 }, { "text": "Cwietkowa", "weight": 1 },
+      { "text": "Cziagina", "weight": 1 }, { "text": "Daria", "weight": 1 }, { "text": "Dażia", "weight": 1 }, { "text": "Diewora", "weight": 1 }, { "text": "Elena", "weight": 1 },
+      { "text": "Ewelina", "weight": 1 }, { "text": "Fiodoria", "weight": 1 }, { "text": "Irina", "weight": 1 }, { "text": "Irisa", "weight": 1 }, { "text": "Iwana", "weight": 1 },
+      { "text": "Jelena", "weight": 1 }, { "text": "Jewdochia", "weight": 1 }, { "text": "Jewgenia", "weight": 1 }, { "text": "Juliania", "weight": 1 }, { "text": "Jurina", "weight": 1 },
+      { "text": "Katarina", "weight": 1 }, { "text": "Kazimira", "weight": 1 }, { "text": "Liubowa", "weight": 1 }, { "text": "Liusza", "weight": 1 }, { "text": "Łukiana", "weight": 1 },
+      { "text": "Makrina", "weight": 1 }, { "text": "Matriona", "weight": 1 }, { "text": "Michaiła", "weight": 1 }, { "text": "Milica", "weight": 1 }, { "text": "Minodoria", "weight": 1 },
+      { "text": "Miszka", "weight": 1 }, { "text": "Nadieżda", "weight": 1 }, { "text": "Natalia", "weight": 1 }, { "text": "Nikolia", "weight": 1 }, { "text": "Olga", "weight": 1 },
+      { "text": "Orlenda", "weight": 1 }, { "text": "Paula", "weight": 1 }, { "text": "Swietłana", "weight": 1 }, { "text": "Talika", "weight": 1 }, { "text": "Tamara", "weight": 1 },
+      { "text": "Tatiana", "weight": 1 }, { "text": "Torlana", "weight": 1 }, { "text": "Tornajda", "weight": 1 }, { "text": "Ursuna", "weight": 1 }, { "text": "Ursula", "weight": 1 },
+      { "text": "Walentyna", "weight": 1 }, { "text": "Warwara", "weight": 1 }, { "text": "Wasalisa", "weight": 1 }, { "text": "Wiktoria", "weight": 1 }, { "text": "Zoja", "weight": 1 }
+    ],
+    "kislev_mat_m": [
+      { "text": "Aleksandrasin", "weight": 1 }, { "text": "Anastazjasin", "weight": 1 }, { "text": "Belasin", "weight": 1 }, { "text": "Biełedniasin", "weight": 1 }, { "text": "Cwietkowasin", "weight": 1 },
+      { "text": "Cziaginasin", "weight": 1 }, { "text": "Dariasin", "weight": 1 }, { "text": "Dażiasin", "weight": 1 }, { "text": "Dieworasin", "weight": 1 }, { "text": "Elenasin", "weight": 1 },
+      { "text": "Ewelinasin", "weight": 1 }, { "text": "Fiodoriasin", "weight": 1 }, { "text": "Irinasin", "weight": 1 }, { "text": "Irisasin", "weight": 1 }, { "text": "Iwanasin", "weight": 1 },
+      { "text": "Jelenasin", "weight": 1 }, { "text": "Jewdochiasin", "weight": 1 }, { "text": "Jewgeniasin", "weight": 1 }, { "text": "Julianiasin", "weight": 1 }, { "text": "Jurinasin", "weight": 1 },
+      { "text": "Katarinasin", "weight": 1 }, { "text": "Kazimirasin", "weight": 1 }, { "text": "Liubowasin", "weight": 1 }, { "text": "Liuszasin", "weight": 1 }, { "text": "Łukianasin", "weight": 1 },
+      { "text": "Makrinasin", "weight": 1 }, { "text": "Matrionasin", "weight": 1 }, { "text": "Michaiłasin", "weight": 1 }, { "text": "Milicasin", "weight": 1 }, { "text": "Minodoriasin", "weight": 1 },
+      { "text": "Miszkasin", "weight": 1 }, { "text": "Nadieżdasin", "weight": 1 }, { "text": "Nataliasin", "weight": 1 }, { "text": "Nikoliasin", "weight": 1 }, { "text": "Olgasin", "weight": 1 },
+      { "text": "Orlendasin", "weight": 1 }, { "text": "Paulasin", "weight": 1 }, { "text": "Swietłanasin", "weight": 1 }, { "text": "Talikasin", "weight": 1 }, { "text": "Tamarasin", "weight": 1 },
+      { "text": "Tatianasin", "weight": 1 }, { "text": "Torlanasin", "weight": 1 }, { "text": "Tornajdasin", "weight": 1 }, { "text": "Ursunasin", "weight": 1 }, { "text": "Ursulasin", "weight": 1 },
+      { "text": "Walentynasin", "weight": 1 }, { "text": "Warwarasin", "weight": 1 }, { "text": "Wasalisasin", "weight": 1 }, { "text": "Wiktoriasin", "weight": 1 }, { "text": "Zojasin", "weight": 1 }
+    ],
+    "kislev_mat_k": [
+      { "text": "Aleksandradoczia", "weight": 1 }, { "text": "Anastazjadoczia", "weight": 1 }, { "text": "Beladoczia", "weight": 1 }, { "text": "Biełedniadoczia", "weight": 1 }, { "text": "Cwietkowadoczia", "weight": 1 },
+      { "text": "Cziaginadoczia", "weight": 1 }, { "text": "Dariadoczia", "weight": 1 }, { "text": "Dażiadoczia", "weight": 1 }, { "text": "Dieworadoczia", "weight": 1 }, { "text": "Elenadoczia", "weight": 1 },
+      { "text": "Ewelinadoczia", "weight": 1 }, { "text": "Fiodoriadoczia", "weight": 1 }, { "text": "Irinadoczia", "weight": 1 }, { "text": "Irisadoczia", "weight": 1 }, { "text": "Iwanadoczia", "weight": 1 },
+      { "text": "Jelenadoczia", "weight": 1 }, { "text": "Jewdochiadoczia", "weight": 1 }, { "text": "Jewgeniadoczia", "weight": 1 }, { "text": "Julianiadoczia", "weight": 1 }, { "text": "Jurinadoczia", "weight": 1 },
+      { "text": "Katarinadoczia", "weight": 1 }, { "text": "Kazimiradoczia", "weight": 1 }, { "text": "Liubowadoczia", "weight": 1 }, { "text": "Liuszadoczia", "weight": 1 }, { "text": "Łukianadoczia", "weight": 1 },
+      { "text": "Makrinadoczia", "weight": 1 }, { "text": "Matrionadoczia", "weight": 1 }, { "text": "Michaiładoczia", "weight": 1 }, { "text": "Milicadoczia", "weight": 1 }, { "text": "Minodoriadoczia", "weight": 1 },
+      { "text": "Miszkadoczia", "weight": 1 }, { "text": "Nadieżdadoczia", "weight": 1 }, { "text": "Nataliadoczia", "weight": 1 }, { "text": "Nikoliadoczia", "weight": 1 }, { "text": "Olgadoczia", "weight": 1 },
+      { "text": "Orlendadoczia", "weight": 1 }, { "text": "Pauladoczia", "weight": 1 }, { "text": "Swietłanadoczia", "weight": 1 }, { "text": "Talikadoczia", "weight": 1 }, { "text": "Tamaradoczia", "weight": 1 },
+      { "text": "Tatianadoczia", "weight": 1 }, { "text": "Torlanadoczia", "weight": 1 }, { "text": "Tornajdadoczia", "weight": 1 }, { "text": "Ursunadoczia", "weight": 1 }, { "text": "Ursuladoczia", "weight": 1 },
+      { "text": "Walentynadoczia", "weight": 1 }, { "text": "Warwaradoczia", "weight": 1 }, { "text": "Wasalisadoczia", "weight": 1 }, { "text": "Wiktoriadoczia", "weight": 1 }, { "text": "Zojadoczia", "weight": 1 }
+    ],
+    "kislev_nazwisko": [
+      { "text": "Ajseniew", "weight": 1 }, { "text": "Aznabajew", "weight": 1 }, { "text": "Bondarenko", "weight": 1 }, { "text": "Bukowski", "weight": 1 }, { "text": "Charkowsin", "weight": 1 },
+      { "text": "Czekatiło", "weight": 1 }, { "text": "Czesow", "weight": 1 }, { "text": "Dażdżaliew", "weight": 1 }, { "text": "Dżamwin", "weight": 1 }, { "text": "Fiedokow", "weight": 1 },
+      { "text": "Filipow", "weight": 1 }, { "text": "Gawriłow", "weight": 1 }, { "text": "Golicyn", "weight": 1 }, { "text": "Ilczenko", "weight": 1 }, { "text": "Ipatiew", "weight": 1 },
+      { "text": "Jakow", "weight": 1 }, { "text": "Jakuszkin", "weight": 1 }, { "text": "Jekomow", "weight": 1 }, { "text": "Jelawicz", "weight": 1 }, { "text": "Jelcow", "weight": 1 },
+      { "text": "Juridow", "weight": 1 }, { "text": "Kostina", "weight": 1 }, { "text": "Krasnyj", "weight": 1 }, { "text": "Kudrow", "weight": 1 }, { "text": "Lebedienko", "weight": 1 },
+      { "text": "Liachow", "weight": 1 }, { "text": "Moroszkin", "weight": 1 }, { "text": "Mozorow", "weight": 1 }, { "text": "Nikodocz", "weight": 1 }, { "text": "Nowosi", "weight": 1 },
+      { "text": "Olgawniuk", "weight": 1 }, { "text": "Owinko", "weight": 1 }, { "text": "Połursunow", "weight": 1 }, { "text": "Pronin", "weight": 1 }, { "text": "Putiortin", "weight": 1 },
+      { "text": "Rebikow", "weight": 1 }, { "text": "Rybki", "weight": 1 }, { "text": "Skworcow", "weight": 1 }, { "text": "Synszow", "weight": 1 }, { "text": "Szałajew", "weight": 1 },
+      { "text": "Taoliczew", "weight": 1 }, { "text": "Tereskow", "weight": 1 }, { "text": "Tijuryn", "weight": 1 }, { "text": "Ulrykow", "weight": 1 }, { "text": "Wdowin", "weight": 1 },
+      { "text": "Wierepajew", "weight": 1 }, { "text": "Wułoszyn", "weight": 1 }, { "text": "Zakarow", "weight": 1 }, { "text": "Zinowiew", "weight": 1 }, { "text": "Zub", "weight": 1 }
+    ]
+  },
+  "tags": ["Imiona"],
+  "ownerId": "builtin",
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "isVisible": false,
+  "createdAt": "2026-04-16T20:06:00.000Z"
+}

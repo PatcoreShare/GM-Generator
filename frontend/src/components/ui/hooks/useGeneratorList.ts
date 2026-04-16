@@ -112,8 +112,7 @@ export function useGeneratorList({
       id: crypto.randomUUID(),
       ownerId: currentUser.id,
       ownerName: currentUser.username,
-      isBuiltIn: false,
-      tags: item.tags?.filter((t) => t !== 'Wbudowane') || [],
+      tags: item.tags || [],
       createdAt: new Date().toISOString(),
     };
 

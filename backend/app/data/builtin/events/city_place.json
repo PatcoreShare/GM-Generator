@@ -1,0 +1,49 @@
+{
+  "id": "city_place",
+  "name": "Miejsce",
+  "description": "Generator miejsca miejskiej sceny w realiach Starego Świata. Losuje, gdzie rozgrywa się wydarzenie.",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Miejsce", "source": "stary_swiat_miejsce" }
+  ],
+  "multiTables": {
+    "stary_swiat_miejsce": [
+      { "text": "Błotnista ulica biedoty między chwiejącymi się kamienicami", "weight": 1 },
+      { "text": "Targ rybny, gdzie smród bije równie mocno jak handlarze", "weight": 1 },
+      { "text": "Podcień przy świątyni Sigmara pełen petentów, żebraków i grzeszników", "weight": 1 },
+      { "text": "Wąski zaułek między szynkiem a domem publicznym", "weight": 1 },
+      { "text": "Plac egzekucyjny, na którym jeszcze nie zmyto krwi", "weight": 1 },
+      { "text": "Dzielnica garbarzy i farbiarzy, gdzie powietrze gryzie w gardło", "weight": 1 },
+      { "text": "Most nad czarnym kanałem, pod którym coś się porusza", "weight": 1 },
+      { "text": "Dziedziniec gospody dla podróżnych i najemników", "weight": 1 },
+      { "text": "Ulica rzemieślników, pełna dymu, iskier i przekleństw", "weight": 1 },
+      { "text": "Mały cmentarz Morra otoczony kutym ogrodzeniem", "weight": 1 },
+      { "text": "Nabrzeże, przy którym właśnie rozładowuje się barkę", "weight": 1 },
+      { "text": "Dom gildii kupieckiej z obstawą uzbrojonych strażników", "weight": 1 },
+      { "text": "Pasaż handlowy dla bogatszych mieszczan", "weight": 1 },
+      { "text": "Zawalający się czynszowy dom pełen krzyków i plotek", "weight": 1 },
+      { "text": "Magazyny przy porcie lub rzecznej przystani", "weight": 1 },
+      { "text": "Piwnica pod karczmą, gdzie odbywają się nielegalne spotkania", "weight": 1 },
+      { "text": "Podwórze między czynszówkami, zastawione beczkami i śmieciami", "weight": 1 },
+      { "text": "Studnia miejska, przy której ustawiają się kolejki i wybuchają kłótnie", "weight": 1 },
+      { "text": "Brama miejska, gdzie straż trzepie wozy i sakwy", "weight": 1 },
+      { "text": "Szpital lub przytułek Shallyi pachnący ziołami i śmiercią", "weight": 1 },
+      { "text": "Stara kapliczka przy rozdrożu wewnątrz murów", "weight": 1 },
+      { "text": "Piekarnia, przed którą od rana stoi długa kolejka", "weight": 1 },
+      { "text": "Koszary straży miejskiej albo posterunek poborców", "weight": 1 },
+      { "text": "Ogród za rezydencją patrycjusza, odgrodzony od reszty miasta murem", "weight": 1 },
+      { "text": "Dzielnica cudzoziemców, kupców i przyjezdnych najemników", "weight": 1 },
+      { "text": "Plac targowy po zmroku, gdy stragany są już zamknięte, ale interesy trwają dalej", "weight": 1 },
+      { "text": "Kanały ściekowe pod ulicami, wilgotne i niepokojąco głośne", "weight": 1 },
+      { "text": "Warsztat cyrulika, chirurga lub balsamisty", "weight": 1 },
+      { "text": "Spichlerz albo skład zboża pilnowany przez wynajętych zbirów", "weight": 1 },
+      { "text": "Dachy i drewniane galerie między domami, po których da się uciekać ponad ulicą", "weight": 1 }
+    ]
+  },
+  "tags": ["Wydarzenia"],
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "isVisible": false,
+  "createdAt": "2026-04-15T00:00:00"
+}

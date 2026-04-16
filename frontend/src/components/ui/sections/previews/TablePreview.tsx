@@ -41,8 +41,8 @@ export function TablePreview({
             min="0"
             value={rollCount}
             onChange={(e) => {
-                const next = parseInt(e.target.value, 10);
-                setRollCount(Number.isNaN(next) ? 1 : Math.max(1, next));
+              const next = parseInt(e.target.value, 10);
+              setRollCount(Number.isNaN(next) ? 1 : Math.max(1, next));
             }}
             onClick={(e) => (e.target as HTMLInputElement).select()}
             onFocus={(e) => e.target.select()}

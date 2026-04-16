@@ -6,9 +6,7 @@ from sqlalchemy.orm import Session
 from app.models.db_models import GeneratorDB, UserDB
 from app.services.auth import hash_password
 
-
 BUILTIN_DIR = Path(__file__).resolve().parent / "data" / "builtin"
-
 
 def seed_users(db: Session):
     users = [
@@ -29,7 +27,6 @@ def seed_users(db: Session):
 
     db.commit()
 
-
 def _normalize_builtin_generator(raw: dict) -> dict:
     legacy_id = raw.get("legacyId") or raw.get("id")
     if not legacy_id:
@@ -43,9 +40,8 @@ def _normalize_builtin_generator(raw: dict) -> dict:
         "type": generator_type,
         "description": raw.get("description"),
         "owner_name": raw.get("ownerName") or "System",
-        "is_built_in": raw.get("isBuiltIn", True),
         "is_visible": raw.get("isVisible", True),
-        "tags": raw.get("tags", ["Wbudowane"]),
+        "tags": raw.get("tags", []),
         "created_at": raw.get("createdAt"),
         "data": {},
     }
@@ -77,7 +73,6 @@ def _normalize_builtin_generator(raw: dict) -> dict:
 
     return normalized
 
-
 def _extract_generators(raw_data) -> list[dict]:
     if isinstance(raw_data, dict):
         if "generators" in raw_data:
@@ -91,7 +86,6 @@ def _extract_generators(raw_data) -> list[dict]:
         return [item for item in raw_data if isinstance(item, dict)]
 
     raise ValueError("JSON root must be an object, array, or object with 'generators'")
-
 
 def seed_builtin_generators(db: Session):
     if not BUILTIN_DIR.exists():
@@ -127,7 +121,6 @@ def seed_builtin_generators(db: Session):
                 exists.description = data["description"]
                 exists.owner_id = None
                 exists.owner_name = data["owner_name"]
-                exists.is_built_in = data["is_built_in"]
                 exists.is_visible = data["is_visible"]
                 exists.tags = data["tags"]
                 exists.data = data["data"]
@@ -145,7 +138,6 @@ def seed_builtin_generators(db: Session):
                 description=data["description"],
                 owner_id=None,
                 owner_name=data["owner_name"],
-                is_built_in=data["is_built_in"],
                 is_visible=data["is_visible"],
                 tags=data["tags"],
                 data=data["data"],
@@ -157,7 +149,6 @@ def seed_builtin_generators(db: Session):
             db.add(generator)
 
     db.commit()
-
 
 def run_seed(db: Session):
     seed_users(db)

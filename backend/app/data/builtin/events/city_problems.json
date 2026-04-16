@@ -1,0 +1,49 @@
+{
+  "id": "city_problems",
+  "name": "Ukryty problem",
+  "description": "Generator ukrytego problemu, stawki albo prawdziwej przyczyny wydarzenia w mieście Starego Świata.",
+  "type": "table",
+  "subType": "complex",
+  "fields": [
+    { "label": "Ukryty problem", "source": "stary_swiat_stawka" }
+  ],
+  "multiTables": {
+    "stary_swiat_stawka": [
+      { "text": "To zwykły pozór; prawdziwy cel całego zamieszania jest polityczny", "weight": 1 },
+      { "text": "Ktoś próbuje ukryć dowód morderstwa przed świtem", "weight": 1 },
+      { "text": "Zaginiony wcale nie uciekł, tylko został sprzedany albo przekazany dalej", "weight": 1 },
+      { "text": "Winny jest niewinny, a oskarżyciel działa na czyjeś zlecenie", "weight": 1 },
+      { "text": "W grę wchodzi skażona żywność, która może wywołać rozruchy", "weight": 1 },
+      { "text": "Ktoś fałszuje pieczęcie, dokumenty albo nakazy aresztowania", "weight": 1 },
+      { "text": "Pod ulicą istnieje przejście do kanałów, krypt albo zapomnianych piwnic", "weight": 1 },
+      { "text": "Władze wiedzą o problemie, ale wolą go przemilczeć", "weight": 1 },
+      { "text": "W sprawę wmieszany jest kult Chaosu, choć jego ślad jest dobrze ukryty", "weight": 1 },
+      { "text": "To robota przemytników przewożących broń, proch albo zakazane księgi", "weight": 1 },
+      { "text": "Ktoś chce wywołać panikę, by tanio wykupić towary lub nieruchomości", "weight": 1 },
+      { "text": "Zwłoki noszą ślady, które wskazują nie na bestię, lecz na rytuał", "weight": 1 },
+      { "text": "Zaginione pieniądze były łapówką przeznaczoną dla wysokiego urzędnika", "weight": 1 },
+      { "text": "Oskarżenie o herezję jest tylko narzędziem prywatnej zemsty", "weight": 1 },
+      { "text": "W studni, piwnicy albo magazynie ukryto coś plugawszego niż trup", "weight": 1 },
+      { "text": "Sprawa dotyczy nieślubnego dziecka, dziedziczenia albo kompromitującego romansu", "weight": 1 },
+      { "text": "Rzekoma choroba jest prawdziwa, ale jej źródło ktoś świadomie ukrywa", "weight": 1 },
+      { "text": "Ktoś próbuje zatuszować kontakt z mutantami albo bestiami z lasu", "weight": 1 },
+      { "text": "Wydarzenia są skutkiem sporu między świątyniami lub rywalizującymi kultami", "weight": 1 },
+      { "text": "Zwykła kradzież okazuje się częścią większej siatki działającej od miesięcy", "weight": 1 },
+      { "text": "W zamieszaniu zaginął list, który może pogrążyć wpływową osobę", "weight": 1 },
+      { "text": "Podjudzony tłum ma stać się przykrywką dla zamachu albo porwania", "weight": 1 },
+      { "text": "Niewygodny świadek ukrywa się wśród żebraków, chorych albo pielgrzymów", "weight": 1 },
+      { "text": "Ktoś odkrył wejście do starej krypty i nie wie, co z niej wypuścił", "weight": 1 },
+      { "text": "W sprawę zamieszany jest demonolog, astrolog albo inny niebezpieczny uczony", "weight": 1 },
+      { "text": "To, co wygląda na działalność kultu, może być też robotą skavenów", "weight": 1 },
+      { "text": "Najgorsze dopiero nadejdzie, jeśli do świtu nie zostanie powstrzymana procesja, transport albo transakcja", "weight": 1 },
+      { "text": "Jedna z ważnych osób na miejscu jest podmieniona, opętana albo szantażowana", "weight": 1 },
+      { "text": "Cała sprawa dotyczy starego długu z czasów wojny, oblężenia albo zarazy", "weight": 1 },
+      { "text": "Jeśli prawda wyjdzie na jaw, w mieście wybuchną zamieszki, pogrom albo czystka", "weight": 1 }
+    ]
+  },
+  "tags": ["Wydarzenia"],
+  "ownerName": "System",
+  "isBuiltIn": true,
+  "isVisible": false,
+  "createdAt": "2026-04-15T00:00:00"
+}

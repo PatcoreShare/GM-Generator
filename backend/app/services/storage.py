@@ -39,7 +39,6 @@ def generator_to_response(generator: GeneratorDB) -> dict:
         "description": generator.description,
         "ownerId": str(generator.owner_id) if generator.owner_id else generator.legacy_owner_id,
         "ownerName": generator.owner_name,
-        "isBuiltIn": generator.is_built_in,
         "isVisible": generator.is_visible,
         "tags": generator.tags or [],
         "createdAt": generator.created_at.isoformat(),
@@ -78,7 +77,6 @@ def upsert_generator(db: Session, payload: dict) -> dict:
         "description": payload.get("description"),
         "owner_id": owner_id,
         "owner_name": owner_name,
-        "is_built_in": payload.get("isBuiltIn", False),
         "is_visible": payload.get("isVisible", True),
         "tags": payload.get("tags", []),
     }
@@ -92,7 +90,6 @@ def upsert_generator(db: Session, payload: dict) -> dict:
             "description",
             "ownerId",
             "ownerName",
-            "isBuiltIn",
             "isVisible",
             "tags",
             "createdAt",
