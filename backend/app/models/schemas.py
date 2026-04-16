@@ -1,3 +1,4 @@
+# backend/app/models/schemas.py
 from datetime import datetime
 from typing import Any, Literal
 
@@ -11,6 +12,7 @@ class LoginRequest(BaseModel):
 
 class RegisterRequest(BaseModel):
     username: str
+    email: str
     password: str
 
 
@@ -18,6 +20,21 @@ class UserResponse(BaseModel):
     id: str
     username: str
     role: str
+
+
+class UserAdminResponse(BaseModel):
+    id: str
+    username: str
+    email: str
+    role: str
+    is_active: bool
+    created_at: str
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+    user: UserResponse
 
 
 class CharacterSkillItemPayload(BaseModel):
@@ -124,7 +141,6 @@ class GeneratorPayload(BaseModel):
     encumbrance: CharacterEncumbrancePayload | dict[str, Any] | None = None
 
     notes: str | None = None
-
     formula: str | None = None
 
 

@@ -2,42 +2,36 @@ services:
   db:
     image: postgres:16-alpine
     container_name: gm_generator_db
-    restart: unless-stopped
+    restart: always
     environment:
-      POSTGRES_DB: gm_generator
-      POSTGRES_USER: gm_user
-      POSTGRES_PASSWORD: gm_password
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5432}:5432"   
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: gm_generator_backend
-    restart: unless-stopped
+    restart: always
     depends_on:
       - db
-    environment:
-      DATABASE_URL: postgresql+psycopg://gm_user:gm_password@db:5432/gm_generator
-      APP_HOST: 0.0.0.0
-      APP_PORT: 8000
-      CORS_ORIGINS: http://localhost:3000
-    ports:
-      - "8000:8000"
+    env_file: .env
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: gm_generator_frontend
-    restart: unless-stopped
+    restart: always
     depends_on:
       - backend
     ports:
-      - "3000:80"
+      - "${APP_PORT:-3000}:80"    
 
 volumes:
   postgres_data:

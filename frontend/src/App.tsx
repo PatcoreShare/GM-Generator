@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+// frontend/src/App.tsx
+import React, { useState, useEffect, useCallback } from 'react';
 import { ArchiveItem, User, RandomTable } from './types';
 import { GeneratorList } from './components/GeneratorList';
 import { GeneratorForm } from './components/GeneratorForm';
 import { ImportExport } from './components/ImportExport';
 import { Auth } from './components/Auth';
+import { VerifyEmail } from './components/VerifyEmail';
 import { Button } from './components/ui/button';
 import { Input } from './components/ui/input';
 import { Toaster } from './components/ui/sonner';
@@ -22,11 +24,62 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
-export default function App() {
-  const [user, setUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem('wfrp-user');
-    return saved ? JSON.parse(saved) : null;
+const API_BASE = import.meta.env.VITE_API_URL ?? '';
+
+function getToken(): string | null {
+  return localStorage.getItem('wfrp-token');
+}
+
+async function apiFetch<T = unknown>(path: string, options: RequestInit = {}): Promise<T> {
+  const token = getToken();
+
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...((options.headers as Record<string, string>) ?? {}),
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const res = await fetch(`${API_BASE}${path}`, {
+    ...options,
+    headers,
   });
+
+  if (res.status === 401) {
+    localStorage.removeItem('wfrp-token');
+    window.location.reload();
+  }
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error((err as { detail?: string }).detail ?? `HTTP ${res.status}`);
+  }
+
+  if (res.status === 204) {
+    return undefined as unknown as T;
+  }
+
+  return res.json() as Promise<T>;
+}
+
+export default function App() {
+  // ── Obsługa linku aktywacyjnego z e-maila ──────────────────────────────────
+  // Jeśli URL zawiera ?token=... to pokaż stronę weryfikacji
+  const searchParams = new URLSearchParams(window.location.search);
+  if (searchParams.has('token')) {
+    return (
+      <>
+        <VerifyEmail onGoToLogin={() => window.location.replace('/')} />
+        <Toaster position="bottom-right" theme="light" richColors />
+      </>
+    );
+  }
+  // ──────────────────────────────────────────────────────────────────────────
+
+  const [user, setUser] = useState<User | null>(null);
+  const [bootstrapping, setBootstrapping] = useState(true);
   const [items, setItems] = useState<ArchiveItem[]>([]);
   const [view, setView] = useState<'list' | 'create' | 'edit'>('list');
   const [selectedItem, setSelectedItem] = useState<ArchiveItem | null>(null);
@@ -38,35 +91,50 @@ export default function App() {
   const [showTypeSelector, setShowTypeSelector] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<string | null>(null);
 
-  const fetchItems = async () => {
+  useEffect(() => {
+    const token = getToken();
+
+    if (!token) {
+      setBootstrapping(false);
+      return;
+    }
+
+    apiFetch<User>('/api/auth/me')
+      .then((u) => setUser(u))
+      .catch(() => localStorage.removeItem('wfrp-token'))
+      .finally(() => setBootstrapping(false));
+  }, []);
+
+  const fetchItems = useCallback(async () => {
     if (!user) return;
 
     try {
       setLoading(true);
-      const response = await fetch(`/api/generators?userId=${user.id}&role=${user.role}`);
-      const data = await response.json();
+      const data = await apiFetch<ArchiveItem[]>(
+        `/api/generators?userId=${user.id}&role=${user.role}`
+      );
       setItems(data);
-    } catch (error) {
+    } catch {
       toast.error('Nie udało się załadować archiwów');
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     if (user) {
       fetchItems();
     }
-  }, [user]);
+  }, [user, fetchItems]);
 
   const handleLogin = (newUser: User) => {
     setUser(newUser);
-    localStorage.setItem('wfrp-user', JSON.stringify(newUser));
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('wfrp-token');
     setUser(null);
-    localStorage.removeItem('wfrp-user');
+    setItems([]);
     toast.info('Wylogowano');
   };
 
@@ -74,26 +142,23 @@ export default function App() {
     if (!user) return;
 
     try {
-      const itemWithOwnership = {
+      const payload = {
         ...item,
         ownerId: item.ownerId || user.id,
         ownerName: item.ownerName || user.username,
       };
 
-      const response = await fetch('/api/generators', {
+      await apiFetch('/api/generators', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(itemWithOwnership),
+        body: JSON.stringify(payload),
       });
 
-      if (response.ok) {
-        toast.success(view === 'create' ? 'Archiwum utworzone' : 'Archiwum zaktualizowane');
-        fetchItems();
-        setView('list');
-        setSelectedItem(null);
-      }
-    } catch (error) {
-      toast.error('Nie udało się zapisać archiwum');
+      toast.success(view === 'create' ? 'Archiwum utworzone' : 'Archiwum zaktualizowane');
+      fetchItems();
+      setView('list');
+      setSelectedItem(null);
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Nie udało się zapisać archiwum');
     }
   };
 
@@ -105,12 +170,13 @@ export default function App() {
     if (!itemToDelete) return;
 
     try {
-      const response = await fetch(`/api/generators/${itemToDelete}`, { method: 'DELETE' });
-      if (response.ok) {
-        toast.success('Archiwum zostało usunięte');
-        fetchItems();
-      }
-    } catch (error) {
+      await apiFetch(`/api/generators/${itemToDelete}`, {
+        method: 'DELETE',
+      });
+
+      toast.success('Archiwum zostało usunięte');
+      fetchItems();
+    } catch {
       toast.error('Nie udało się usunąć archiwum');
     } finally {
       setItemToDelete(null);
@@ -133,8 +199,7 @@ export default function App() {
   categories.push(...allTags.sort());
 
   const filteredItems = items.filter((g) => {
-    const hiddenForUser = user?.role !== 'admin' && g.isVisible === false;
-    if (hiddenForUser) return false;
+    if (user?.role !== 'admin' && g.isVisible === false) return false;
 
     const matchesSearch = g.name.toLowerCase().includes(searchTerm.toLowerCase());
 
@@ -157,6 +222,14 @@ export default function App() {
   const uniqueUsers = Array.from(
     new Map(items.filter((g) => !g.isBuiltIn).map((g) => [g.ownerId, g.ownerName])).entries()
   ).map(([id, name]) => ({ id, name }));
+
+  if (bootstrapping) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <ShieldAlert className="w-16 h-16 text-primary/20 animate-pulse" />
+      </div>
+    );
+  }
 
   if (!user) {
     return (
@@ -216,6 +289,7 @@ export default function App() {
                 </Button>
               </>
             )}
+
             {view !== 'list' && (
               <Button
                 variant="ghost"
@@ -240,102 +314,102 @@ export default function App() {
         ) : (
           <div className="flex flex-col lg:flex-row gap-8">
             {view === 'list' && (
-              <>
-                <div className="flex-1 space-y-6">
-                  <div className="flex flex-col gap-4 border-b border-primary/10 pb-4">
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                      <h2 className="text-2xl font-bold fancy-heading uppercase tracking-tight">
-                        Imperialne Archiwa
-                      </h2>
-                      <div className="w-full sm:w-64">
-                        <Input
-                          placeholder="Szukaj..."
-                          value={searchTerm}
-                          onChange={(e) => setSearchTerm(e.target.value)}
-                          className="bg-background border-primary/30 h-9"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 overflow-x-auto pb-2 custom-scrollbar">
-                      {categories.map((category) => (
-                        <button
-                          key={category}
-                          onClick={() => {
-                            setActiveCategory(category);
-                            setSelectedOwnerId(null);
-                          }}
-                          className={`px-4 py-1.5 text-xs font-bold uppercase tracking-widest transition-all border-b-2 ${
-                            activeCategory === category
-                              ? 'border-primary text-primary bg-primary/5'
-                              : 'border-transparent text-primary/40 hover:text-primary/60 hover:bg-primary/5'
-                          }`}
-                        >
-                          {category}
-                        </button>
-                      ))}
+              <div className="flex-1 space-y-6">
+                <div className="flex flex-col gap-4 border-b border-primary/10 pb-4">
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <h2 className="text-2xl font-bold fancy-heading uppercase tracking-tight">
+                      Imperialne Archiwa
+                    </h2>
+                    <div className="w-full sm:w-64">
+                      <Input
+                        placeholder="Szukaj..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="bg-background border-primary/30 h-9"
+                      />
                     </div>
                   </div>
 
-                  {activeCategory === 'Użytkownicy' && !selectedOwnerId ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                      {uniqueUsers.map((u) => (
-                        <button
-                          key={u.id}
-                          onClick={() => setSelectedOwnerId(u.id)}
-                          className="parchment-card p-6 flex flex-col items-center gap-3 hover:border-primary transition-all group"
-                        >
-                          <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20">
-                            <UserIcon className="w-6 h-6 text-primary" />
-                          </div>
-                          <span className="font-bold uppercase tracking-widest text-xs text-primary">
-                            {u.name || 'Anonimowy Skryba'}
-                          </span>
-                          <span className="text-[10px] text-primary/40 font-mono">
-                            {items.filter((g) => g.ownerId === u.id).length} WPISÓW
-                          </span>
-                        </button>
-                      ))}
-                      {uniqueUsers.length === 0 && (
-                        <div className="col-span-full py-12 text-center border-2 border-dashed border-primary/10 rounded">
-                          <p className="text-primary/40 italic">
-                            Brak wpisów stworzonych przez użytkowników.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <>
-                      {selectedOwnerId && (
-                        <div className="flex items-center gap-2 mb-4">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => setSelectedOwnerId(null)}
-                            className="text-primary/60 hover:text-primary text-[10px] font-bold uppercase"
-                          >
-                            <ChevronLeft className="w-3 h-3 mr-1" /> Powrót do listy skrybów
-                          </Button>
-                          <div className="h-4 w-px bg-primary/20 mx-2" />
-                          <span className="text-xs font-bold uppercase tracking-widest text-primary/40">
-                            Wpisy użytkownika:{' '}
-                            <span className="text-primary">
-                              {uniqueUsers.find((u) => u.id === selectedOwnerId)?.name}
-                            </span>
-                          </span>
-                        </div>
-                      )}
-                      <GeneratorList
-                        generators={filteredItems as ArchiveItem[]}
-                        allTables={items.filter((i) => i.type === 'table') as RandomTable[]}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
-                        currentUser={user}
-                      />
-                    </>
-                  )}
+                  <div className="flex flex-wrap gap-2 overflow-x-auto pb-2 custom-scrollbar">
+                    {categories.map((category) => (
+                      <button
+                        key={category}
+                        onClick={() => {
+                          setActiveCategory(category);
+                          setSelectedOwnerId(null);
+                        }}
+                        className={`px-4 py-1.5 text-xs font-bold uppercase tracking-widest transition-all border-b-2 ${
+                          activeCategory === category
+                            ? 'border-primary text-primary bg-primary/5'
+                            : 'border-transparent text-primary/40 hover:text-primary/60 hover:bg-primary/5'
+                        }`}
+                      >
+                        {category}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </>
+
+                {activeCategory === 'Użytkownicy' && !selectedOwnerId ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {uniqueUsers.map((u) => (
+                      <button
+                        key={u.id}
+                        onClick={() => setSelectedOwnerId(u.id)}
+                        className="parchment-card p-6 flex flex-col items-center gap-3 hover:border-primary transition-all group"
+                      >
+                        <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20">
+                          <UserIcon className="w-6 h-6 text-primary" />
+                        </div>
+                        <span className="font-bold uppercase tracking-widest text-xs text-primary">
+                          {u.name || 'Anonimowy Skryba'}
+                        </span>
+                        <span className="text-[10px] text-primary/40 font-mono">
+                          {items.filter((g) => g.ownerId === u.id).length} WPISÓW
+                        </span>
+                      </button>
+                    ))}
+
+                    {uniqueUsers.length === 0 && (
+                      <div className="col-span-full py-12 text-center border-2 border-dashed border-primary/10 rounded">
+                        <p className="text-primary/40 italic">
+                          Brak wpisów stworzonych przez użytkowników.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <>
+                    {selectedOwnerId && (
+                      <div className="flex items-center gap-2 mb-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setSelectedOwnerId(null)}
+                          className="text-primary/60 hover:text-primary text-[10px] font-bold uppercase"
+                        >
+                          <ChevronLeft className="w-3 h-3 mr-1" /> Powrót do listy skrybów
+                        </Button>
+                        <div className="h-4 w-px bg-primary/20 mx-2" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-primary/40">
+                          Wpisy użytkownika:{' '}
+                          <span className="text-primary">
+                            {uniqueUsers.find((u) => u.id === selectedOwnerId)?.name}
+                          </span>
+                        </span>
+                      </div>
+                    )}
+
+                    <GeneratorList
+                      generators={filteredItems as ArchiveItem[]}
+                      allTables={items.filter((i) => i.type === 'table') as RandomTable[]}
+                      onEdit={handleEdit}
+                      onDelete={handleDelete}
+                      currentUser={user}
+                    />
+                  </>
+                )}
+              </div>
             )}
 
             {(view === 'create' || view === 'edit') && (
@@ -390,93 +464,33 @@ export default function App() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
-              <button
-                onClick={() => {
-                  setSelectedItem(null);
-                  setCreateType('table');
-                  setView('create');
-                  setShowTypeSelector(false);
-                }}
-                className="parchment-card p-8 flex flex-col items-center gap-4 hover:border-primary transition-all group bg-primary/5"
-              >
-                <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
-                  <TableIcon className="w-8 h-8 text-primary" />
-                </div>
-                <div className="text-center">
-                  <span className="block font-black uppercase tracking-widest text-sm text-primary">
-                    Tabela
-                  </span>
-                  <span className="text-[10px] text-primary/40 uppercase font-bold">
-                    Losowe wyniki
-                  </span>
-                </div>
-              </button>
-
-              <button
-                onClick={() => {
-                  setSelectedItem(null);
-                  setCreateType('note');
-                  setView('create');
-                  setShowTypeSelector(false);
-                }}
-                className="parchment-card p-8 flex flex-col items-center gap-4 hover:border-primary transition-all group bg-primary/5"
-              >
-                <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
-                  <FileText className="w-8 h-8 text-primary" />
-                </div>
-                <div className="text-center">
-                  <span className="block font-black uppercase tracking-widest text-sm text-primary">
-                    Notatka
-                  </span>
-                  <span className="text-[10px] text-primary/40 uppercase font-bold">
-                    Zapiski i obrazy
-                  </span>
-                </div>
-              </button>
-
-              <button
-                onClick={() => {
-                  setSelectedItem(null);
-                  setCreateType('character');
-                  setView('create');
-                  setShowTypeSelector(false);
-                }}
-                className="parchment-card p-8 flex flex-col items-center gap-4 hover:border-primary transition-all group bg-primary/5"
-              >
-                <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
-                  <Users className="w-8 h-8 text-primary" />
-                </div>
-                <div className="text-center">
-                  <span className="block font-black uppercase tracking-widest text-sm text-primary">
-                    Postać
-                  </span>
-                  <span className="text-[10px] text-primary/40 uppercase font-bold">
-                    Karta bohatera
-                  </span>
-                </div>
-              </button>
-
-              <button
-                onClick={() => {
-                  setSelectedItem(null);
-                  setCreateType('dice');
-                  setView('create');
-                  setShowTypeSelector(false);
-                }}
-                className="parchment-card p-8 flex flex-col items-center gap-4 hover:border-primary transition-all group bg-primary/5"
-              >
-                <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
-                  <Dice5 className="w-8 h-8 text-primary" />
-                </div>
-                <div className="text-center">
-                  <span className="block font-black uppercase tracking-widest text-sm text-primary">
-                    Kości
-                  </span>
-                  <span className="text-[10px] text-primary/40 uppercase font-bold">
-                    Rzut XdY+Z
-                  </span>
-                </div>
-              </button>
+              {([
+                { type: 'table' as const, Icon: TableIcon, label: 'Tabela', sub: 'Losowe wyniki' },
+                { type: 'note' as const, Icon: FileText, label: 'Notatka', sub: 'Zapiski i obrazy' },
+                { type: 'character' as const, Icon: Users, label: 'Postać', sub: 'Karta bohatera' },
+                { type: 'dice' as const, Icon: Dice5, label: 'Kości', sub: 'Rzut XdY+Z' },
+              ] as const).map(({ type, Icon, label, sub }) => (
+                <button
+                  key={type}
+                  onClick={() => {
+                    setSelectedItem(null);
+                    setCreateType(type);
+                    setView('create');
+                    setShowTypeSelector(false);
+                  }}
+                  className="parchment-card p-8 flex flex-col items-center gap-4 hover:border-primary transition-all group bg-primary/5"
+                >
+                  <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
+                    <Icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <div className="text-center">
+                    <span className="block font-black uppercase tracking-widest text-sm text-primary">
+                      {label}
+                    </span>
+                    <span className="text-[10px] text-primary/40 uppercase font-bold">{sub}</span>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         </div>

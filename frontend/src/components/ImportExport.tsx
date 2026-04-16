@@ -3,6 +3,7 @@ import { User } from '../types';
 import { Button } from './ui/button';
 import { Download, Upload } from 'lucide-react';
 import { toast } from 'sonner';
+import { apiFetch } from '../lib/apiClient';
 
 interface ImportExportProps {
   onImport: () => void;
@@ -15,11 +16,8 @@ const secondaryStats2ed = ['A', 'Żyw', 'S', 'Wt', 'Sz', 'Mag', 'PO', 'PP'];
 
 function downloadJsonFile(data: unknown, fileName: string) {
   const json = JSON.stringify(data, null, 2);
-  const blob = new Blob([json], {
-    type: 'application/json;charset=utf-8',
-  });
+  const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
   const url = URL.createObjectURL(blob);
-
   const a = document.createElement('a');
   a.href = url;
   a.download = fileName.endsWith('.json') ? fileName : `${fileName}.json`;
@@ -39,9 +37,7 @@ function buildStatRecord(keys: string[], source?: Record<string, unknown>) {
 
 function normalizeCharacterGenerator(item: any) {
   if (!item || item.type !== 'character') return item;
-
   const edition = item.edition === '2ed' ? '2ed' : '4ed';
-
   return {
     ...item,
     edition,
@@ -51,10 +47,7 @@ function normalizeCharacterGenerator(item: any) {
     ),
     secondaryStats:
       edition === '2ed'
-        ? buildStatRecord(
-            secondaryStats2ed,
-            item.secondaryStats as Record<string, unknown> | undefined
-          )
+        ? buildStatRecord(secondaryStats2ed, item.secondaryStats as Record<string, unknown> | undefined)
         : {},
   };
 }
@@ -63,12 +56,9 @@ function normalizeImportPayload(data: any) {
   if (Array.isArray(data?.generators)) {
     return {
       ...data,
-      generators: data.generators.map((item: any) =>
-        normalizeCharacterGenerator(item)
-      ),
+      generators: data.generators.map((item: any) => normalizeCharacterGenerator(item)),
     };
   }
-
   return normalizeCharacterGenerator(data);
 }
 
@@ -124,17 +114,8 @@ export function ImportExport({ onImport, currentUser }: ImportExportProps) {
           name: 'Przykładowa Notatka',
           type: 'note',
           blocks: [
-            {
-              id: 'b1',
-              type: 'text',
-              content: 'To jest przykładowa notatka z opisem świata.',
-            },
-            {
-              id: 'b2',
-              type: 'image',
-              content: 'https://picsum.photos/seed/wfrp/800/400',
-              width: '100%',
-            },
+            { id: 'b1', type: 'text', content: 'To jest przykładowa notatka z opisem świata.' },
+            { id: 'b2', type: 'image', content: 'https://picsum.photos/seed/wfrp/800/400', width: '100%' },
           ],
           tags: ['Przykład', 'Lore'],
           createdAt: new Date().toISOString(),
@@ -147,18 +128,7 @@ export function ImportExport({ onImport, currentUser }: ImportExportProps) {
           race: 'Człowiek',
           profession: 'Mieszczanin',
           description: 'Wysoki, chudy, o przenikliwym spojrzeniu.',
-          stats: {
-            WW: 30,
-            US: 30,
-            S: 30,
-            Wt: 30,
-            Zr: 30,
-            I: 30,
-            Dex: 30,
-            Int: 30,
-            SW: 30,
-            Ogd: 30,
-          },
+          stats: { WW: 30, US: 30, S: 30, Wt: 30, Zr: 30, I: 30, Dex: 30, Int: 30, SW: 30, Ogd: 30 },
           secondaryStats: {},
           skills: ['Mocna Głowa', 'Targowanie'],
           talents: ['Błyskotliwość'],
@@ -170,13 +140,8 @@ export function ImportExport({ onImport, currentUser }: ImportExportProps) {
       ],
     };
 
-    const normalizedSampleData = normalizeImportPayload(sampleData);
-
-    downloadJsonFile(normalizedSampleData, 'wfrp-przyklad-generatorow.json');
-
-    toast.info(
-      'Pobrano przykładowy plik JSON. Możesz go edytować i zaimportować ponownie.'
-    );
+    downloadJsonFile(normalizeImportPayload(sampleData), 'wfrp-przyklad-generatorow.json');
+    toast.info('Pobrano przykładowy plik JSON. Możesz go edytować i zaimportować ponownie.');
   };
 
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -207,27 +172,23 @@ export function ImportExport({ onImport, currentUser }: ImportExportProps) {
             ownerName: currentUser.username,
             createdAt: data.createdAt || new Date().toISOString(),
           };
-
           payload = { generators: [complexTable] };
         }
 
         payload = normalizeImportPayload(payload);
 
-        const response = await fetch('/api/import', {
+        // apiFetch automatycznie dołącza Authorization: Bearer <token>
+        await apiFetch('/api/import', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
 
-        if (response.ok) {
-          toast.success('Generatory zaimportowane pomyślnie');
-          onImport();
-          event.target.value = '';
-        } else {
-          toast.error('Nie udało się zaimportować generatorów');
-        }
-      } catch (error) {
-        toast.error('Nieprawidłowy plik JSON');
+        toast.success('Generatory zaimportowane pomyślnie');
+        onImport();
+        event.target.value = '';
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : 'Nieprawidłowy plik JSON';
+        toast.error(msg);
       }
     };
 
@@ -253,7 +214,6 @@ export function ImportExport({ onImport, currentUser }: ImportExportProps) {
         >
           <Upload className="w-4 h-4 mr-2" /> Importuj JSON
         </Button>
-
         <input
           type="file"
           accept=".json,application/json"

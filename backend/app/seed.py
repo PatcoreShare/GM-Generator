@@ -8,11 +8,11 @@ from app.services.auth import hash_password
 
 BUILTIN_DIR = Path(__file__).resolve().parent / "data" / "builtin"
 
+
 def seed_users(db: Session):
     users = [
-        {"username": "admin", "password": "qweasd", "role": "admin"},
-        {"username": "asd", "password": "qweasd", "role": "user"},
-        {"username": "asd1", "password": "qweasd", "role": "user"},
+        {"username": "patcoreshare", "password": "6JKci1I7DR5p2HfL", "role": "admin", "is_active": True},
+        {"username": "asd",   "password": "qweasd6JKci1I7DR5p2HfL", "role": "user",  "is_active": True},
     ]
 
     for item in users:
@@ -22,10 +22,12 @@ def seed_users(db: Session):
                 username=item["username"],
                 password_hash=hash_password(item["password"]),
                 role=item["role"],
+                is_active=item["is_active"],
             )
             db.add(user)
 
     db.commit()
+
 
 def _normalize_builtin_generator(raw: dict) -> dict:
     legacy_id = raw.get("legacyId") or raw.get("id")
@@ -73,6 +75,7 @@ def _normalize_builtin_generator(raw: dict) -> dict:
 
     return normalized
 
+
 def _extract_generators(raw_data) -> list[dict]:
     if isinstance(raw_data, dict):
         if "generators" in raw_data:
@@ -86,6 +89,7 @@ def _extract_generators(raw_data) -> list[dict]:
         return [item for item in raw_data if isinstance(item, dict)]
 
     raise ValueError("JSON root must be an object, array, or object with 'generators'")
+
 
 def seed_builtin_generators(db: Session):
     if not BUILTIN_DIR.exists():
@@ -149,6 +153,7 @@ def seed_builtin_generators(db: Session):
             db.add(generator)
 
     db.commit()
+
 
 def run_seed(db: Session):
     seed_users(db)

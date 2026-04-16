@@ -23,10 +23,9 @@ Base.metadata.create_all(bind=engine)
 with SessionLocal() as db:
     run_seed(db)
 
-app.include_router(auth_router, prefix="/api", tags=["auth"])
+app.include_router(auth_router, prefix="/api/auth", tags=["auth"])
 app.include_router(generators_router, prefix="/api", tags=["generators"])
 app.include_router(import_export_router, prefix="/api", tags=["import-export"])
-
 
 @app.get("/health")
 def health():
